@@ -35,7 +35,8 @@ public class BeatGame extends JFrame {
 	private ImageIcon right2 = new ImageIcon(Main.class.getResource("../images/right2.PNG"));//
 	private ImageIcon mainStart01 = new ImageIcon(Main.class.getResource("../images/mainStart01.jpg"));//
 	private ImageIcon mainStart02 = new ImageIcon(Main.class.getResource("../images/mainStart02.jpg"));//
-
+	private ImageIcon mainBack = new ImageIcon(Main.class.getResource("../images/barbar.Png"));//
+	private ImageIcon mainBackEnter = new ImageIcon(Main.class.getResource("../images/barbar.Png"));//
 	ArrayList<List> List = new ArrayList<List>();
 
 	private Music selectedMusic; // 현재 음악(메인창)
@@ -49,6 +50,8 @@ public class BeatGame extends JFrame {
 	private JButton startButton = new JButton(st1); // 게임시작버튼
 	private JButton ex = new JButton(ex1);
 	private JButton mainStart = new JButton(mainStart01);
+	private JButton mainBackButton = new JButton(mainBack);
+	private JButton firstBackButton = new JButton(mainBack);
 	private boolean isMainScreen = false;
 
 	public BeatGame() {
@@ -60,14 +63,12 @@ public class BeatGame extends JFrame {
 		setLocationRelativeTo(null);// 창을 정중앙에
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-
 		setBackground(new Color(0, 0, 0, 0));
 		setLayout(null);
 		ImageIcon img = new ImageIcon(("viva02.png"));
 		img = new ImageIcon(img.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH));
 		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS,MP3")); // num =0
 		List.add(new List("viva1.jpg", "viva02.png", "VIVA.MP3", "VIVA,MP3")); // num=1
-
 		exitButton.setBounds(1250, 0, 30, 30);
 		exitButton.setBorderPainted(false);
 		exitButton.setContentAreaFilled(false);
@@ -78,13 +79,11 @@ public class BeatGame extends JFrame {
 				exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// 손가락모양
 				exitButton.setIcon(extiButton02); // 임의로 지정한 그림으로 변경
 			}
-
 			@Override
 			public void mouseExited(MouseEvent e) { // 마우스를 X버튼에서 올리지 않았을 때
 				exitButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 디폴트값
 				exitButton.setIcon(extiButton01); // 다시 임의로 지정한 그림으로 변경
 			}
-
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.exit(0);
@@ -132,15 +131,7 @@ public class BeatGame extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) { // 시작버튼 눌렀을때 이벤트처리
-
-				nowList(0);
-				startButton.setVisible(false); // 스타트 버튼을 눌렀을 때, 스타트 버튼 삭제
-				ex.setVisible(false); // 마찬가지로, 종료하기 버튼 삭제
-				leftButton.setVisible(true);
-				rightButton.setVisible(true);
-				mainStart.setVisible(true);
-				background = new ImageIcon(Main.class.getResource("../images/maingame.jpg")).getImage();
-				isMainScreen = true;
+				mainScreen();
 
 			}
 		});
@@ -249,6 +240,57 @@ public class BeatGame extends JFrame {
 
 		add(mainStart);
 
+//		firstBackButton.setVisible(false);
+//		firstBackButton.setBounds(20, 50, 230, 70);
+//		firstBackButton.setBorderPainted(false);
+//		firstBackButton.setContentAreaFilled(false);
+//		firstBackButton.setFocusPainted(false);
+//		firstBackButton.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseEntered(MouseEvent e) { // 마우스를 X버튼 위에 올렸을 때
+//				firstBackButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// 손가락모양
+//				firstBackButton.setIcon(mainBackEnter); // 임의로 지정한 그림으로 변경
+//			}
+//
+//			@Override
+//			public void mouseExited(MouseEvent e) { // 마우스를 X버튼에서 올리지 않았을 때
+//				firstBackButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 디폴트값
+//				firstBackButton.setIcon(mainBack); // 다시 임의로 지정한 그림으로 변경
+//			}
+//
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				firtBack();
+//			}
+//		});
+//
+//		add(firstBackButton);
+
+		mainBackButton.setVisible(false);
+		mainBackButton.setBounds(20, 50, 230, 70);
+		mainBackButton.setBorderPainted(false);
+		mainBackButton.setContentAreaFilled(false);
+		mainBackButton.setFocusPainted(false);
+		mainBackButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) { // 마우스를 X버튼 위에 올렸을 때
+				mainBackButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// 손가락모양
+				mainBackButton.setIcon(mainBackEnter); // 임의로 지정한 그림으로 변경
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) { // 마우스를 X버튼에서 올리지 않았을 때
+				mainBackButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 디폴트값
+				mainBackButton.setIcon(mainBack); // 다시 임의로 지정한 그림으로 변경
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				mainBack();
+			}
+		});
+
+		add(mainBackButton);
 	}
 
 	public void paint(Graphics g) {
@@ -268,12 +310,26 @@ public class BeatGame extends JFrame {
 	}
 
 	public void nowList(int nowSelected) { // 현재 메인화면에서 실행중인 곡의 정보
-		if (selectedMusic != null)
-			selectedMusic.close();
+		if (selectedMusic != null) // 음악이 실행중이라면
+			selectedMusic.close(); // 음악을 멈춤
 		nowImage = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getStartImage()))
 				.getImage();
 		selectedMusic = new Music(List.get(nowSelected).getStartMusic(), true);
 		selectedMusic.start();
+	}
+
+	public void mainScreen() {
+
+		startButton.setVisible(false); // 스타트 버튼을 눌렀을 때, 스타트 버튼 삭제
+		ex.setVisible(false); // 마찬가지로, 종료하기 버튼 삭제
+		isMainScreen = true;
+		background = new ImageIcon(Main.class.getResource("../images/maingame.jpg")).getImage();
+		leftButton.setVisible(true);
+		rightButton.setVisible(true);
+		mainStart.setVisible(true);
+		firstBackButton.setVisible(true);
+
+		nowList(0);
 	}
 
 	public void gameStart(int nowSelected) {
@@ -286,7 +342,34 @@ public class BeatGame extends JFrame {
 		mainStart.setVisible(false);
 		background = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getGameImage()))
 				.getImage();
+		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
+		nowList(nowSelected);
 	}
+
+	public void mainBack() {
+		isMainScreen = true;
+		leftButton.setVisible(true);
+		rightButton.setVisible(true);
+		mainStart.setVisible(true);
+		background = new ImageIcon(Main.class.getResource("../images/maingame.jpg")).getImage();
+		mainBackButton.setVisible(false);
+		nowList(nowSelected);// 다시 현재 곡리스트의 번호를 재생함
+	}
+
+//	public void firtBack() {    (게임 처음화면으로 가는 버튼은 불필요)
+//		isMainScreen = false;
+//		leftButton.setVisible(false);
+//		rightButton.setVisible(false);
+//		mainStart.setVisible(false);
+//		firstBackButton.setVisible(false);
+//		background = new ImageIcon(Main.class.getResource("../images/Main(Title).jpg")).getImage();
+//		startButton.setVisible(true);
+//		ex.setVisible(true);
+//		if(selectedMusic !=null) {
+//			selectedMusic.close();
+//		}
+//		
+//	}
 
 	public void buttonRight() { // 게임메인화면 오른쪽 버튼 활성화
 		if (nowSelected == 0) {

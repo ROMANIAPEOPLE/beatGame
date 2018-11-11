@@ -37,6 +37,12 @@ public class BeatGame extends JFrame {
 	private ImageIcon mainStart02 = new ImageIcon(Main.class.getResource("../images/mainStart02.jpg"));//
 	private ImageIcon mainBack = new ImageIcon(Main.class.getResource("../images/barbar.Png"));//
 	private ImageIcon mainBackEnter = new ImageIcon(Main.class.getResource("../images/barbar.Png"));//
+	private ImageIcon note = new ImageIcon(Main.class.getResource("../images/Node.Png"));// 노트
+	private ImageIcon noteLine = new ImageIcon(Main.class.getResource("../images/NoteLine.Png"));// 구분선
+	private ImageIcon gameTitle = new ImageIcon(Main.class.getResource("../images/gameTitle.Png"));// 게임노래 제목
+	private ImageIcon line = new ImageIcon(Main.class.getResource("../images/Line.Png"));//판정라인
+	
+	
 	ArrayList<List> List = new ArrayList<List>();
 
 	private Music selectedMusic; // 현재 음악(메인창)
@@ -52,6 +58,7 @@ public class BeatGame extends JFrame {
 	private JButton mainStart = new JButton(mainStart01);
 	private JButton mainBackButton = new JButton(mainBack);
 	private JButton firstBackButton = new JButton(mainBack);
+	
 	private boolean isMainScreen = false;
 
 	public BeatGame() {
@@ -68,7 +75,7 @@ public class BeatGame extends JFrame {
 		ImageIcon img = new ImageIcon(("viva02.png"));
 		img = new ImageIcon(img.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH));
 		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS,MP3")); // num =0
-		List.add(new List("viva1.jpg", "viva02.png", "VIVA.MP3", "VIVA,MP3")); // num=1
+		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "VIVA,MP3")); // num=1
 		exitButton.setBounds(1250, 0, 30, 30);
 		exitButton.setBorderPainted(false);
 		exitButton.setContentAreaFilled(false);

@@ -17,8 +17,14 @@ import javax.swing.JLabel;
 public class BeatGame extends JFrame {
 	private Image screenImage;
 	private Graphics screenGraphic;
+	
 	private Image background = new ImageIcon(Main.class.getResource("../images/Main(Title).jpg")).getImage();
 	private Image viva01 = new ImageIcon(Main.class.getResource("../images/viva01.png")).getImage();
+//	private Image note = new ImageIcon(Main.class.getResource("../images/Note.png")).getImage();// 노트
+//	private Image noteLine = new ImageIcon(Main.class.getResource("../images/NoteLine.png")).getImage();// 구분선
+	private Image gameTitle = new ImageIcon(Main.class.getResource("../images/gmaeTitle.png")).getImage();
+//	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();//판정라인
+	
 	private ImageIcon extiButton02 = new ImageIcon(Main.class.getResource("../images/extiButton02.jpg"));
 	// 마우스가 닿을떄의 이미지
 	private ImageIcon extiButton01 = new ImageIcon(Main.class.getResource("../images/extiButton01.jpg"));
@@ -37,10 +43,7 @@ public class BeatGame extends JFrame {
 	private ImageIcon mainStart02 = new ImageIcon(Main.class.getResource("../images/mainStart02.jpg"));//
 	private ImageIcon mainBack = new ImageIcon(Main.class.getResource("../images/barbar.Png"));//
 	private ImageIcon mainBackEnter = new ImageIcon(Main.class.getResource("../images/barbar.Png"));//
-	private ImageIcon note = new ImageIcon(Main.class.getResource("../images/Node.Png"));// 노트
-	private ImageIcon noteLine = new ImageIcon(Main.class.getResource("../images/NoteLine.Png"));// 구분선
-	private ImageIcon gameTitle = new ImageIcon(Main.class.getResource("../images/gameTitle.Png"));// 게임노래 제목
-	private ImageIcon line = new ImageIcon(Main.class.getResource("../images/Line.Png"));//판정라인
+	
 	
 	
 	ArrayList<List> List = new ArrayList<List>();
@@ -59,6 +62,7 @@ public class BeatGame extends JFrame {
 	private JButton mainBackButton = new JButton(mainBack);
 	private JButton firstBackButton = new JButton(mainBack);
 	
+	private boolean isGameScreen = false; 
 	private boolean isMainScreen = false;
 
 	public BeatGame() {
@@ -312,6 +316,9 @@ public class BeatGame extends JFrame {
 		if (isMainScreen) {
 			g.drawImage(nowImage, 420, 150, null);
 		}
+		if(isGameScreen == true) {
+			g.drawImage(gameTitle, 0, 660, null);
+		}
 		paintComponents(g); // JLabel을 JFrame에 넣어줌
 		this.repaint();
 	}
@@ -344,6 +351,7 @@ public class BeatGame extends JFrame {
 			selectedMusic.close();
 		}
 		isMainScreen = false;
+		isGameScreen = true;
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		mainStart.setVisible(false);
@@ -351,16 +359,19 @@ public class BeatGame extends JFrame {
 				.getImage();
 		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
 		nowList(nowSelected);
+		
 	}
 
 	public void mainBack() {
 		isMainScreen = true;
+		
 		leftButton.setVisible(true);
 		rightButton.setVisible(true);
 		mainStart.setVisible(true);
 		background = new ImageIcon(Main.class.getResource("../images/maingame.jpg")).getImage();
 		mainBackButton.setVisible(false);
 		nowList(nowSelected);// 다시 현재 곡리스트의 번호를 재생함
+		isGameScreen = false;
 	}
 
 //	public void firtBack() {    (게임 처음화면으로 가는 버튼은 불필요)

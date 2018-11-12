@@ -2,6 +2,7 @@ package beatGame_Frame;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -17,14 +18,15 @@ import javax.swing.JLabel;
 public class BeatGame extends JFrame {
 	private Image screenImage;
 	private Graphics screenGraphic;
-	
+
 	private Image background = new ImageIcon(Main.class.getResource("../images/Main(Title).jpg")).getImage();
+	private Image methodBackGround = new ImageIcon(Main.class.getResource("../images/methodBackGround.jpg")).getImage();
 	private Image viva01 = new ImageIcon(Main.class.getResource("../images/viva01.png")).getImage();
 //	private Image note = new ImageIcon(Main.class.getResource("../images/Note.png")).getImage();// 노트
-//	private Image noteLine = new ImageIcon(Main.class.getResource("../images/NoteLine.png")).getImage();// 구분선
-	private Image gameTitle = new ImageIcon(Main.class.getResource("../images/gmaeTitle.png")).getImage();
-//	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();//판정라인
-	
+	private Image noteLine = new ImageIcon(Main.class.getResource("../images/NoteLine.png")).getImage();// 구분선
+	private Image gameTitle = new ImageIcon(Main.class.getResource("../images/gameTitle.png")).getImage();
+	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();//판정라인
+	private Image divisionLine = new ImageIcon(Main.class.getResource("../images/divisionLine.png")).getImage();
 	private ImageIcon extiButton02 = new ImageIcon(Main.class.getResource("../images/extiButton02.jpg"));
 	// 마우스가 닿을떄의 이미지
 	private ImageIcon extiButton01 = new ImageIcon(Main.class.getResource("../images/extiButton01.jpg"));
@@ -32,6 +34,8 @@ public class BeatGame extends JFrame {
 	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("../images/Bar.jpg")));
 	private ImageIcon st1 = new ImageIcon(Main.class.getResource("../images/startintro.PNG"));//
 	// 게임시작버튼
+	private ImageIcon methodBasic = new ImageIcon(Main.class.getResource("../images/methodButton01.png"));
+	private ImageIcon methodEnter = new ImageIcon(Main.class.getResource("../images/methodButton02.png"));
 	private ImageIcon st2 = new ImageIcon(Main.class.getResource("../images/Start02.PNG"));
 	private ImageIcon ex1 = new ImageIcon(Main.class.getResource("../images/ex01.jpg"));//
 	private ImageIcon ex2 = new ImageIcon(Main.class.getResource("../images/ex02.jpg"));//
@@ -41,8 +45,8 @@ public class BeatGame extends JFrame {
 	private ImageIcon right2 = new ImageIcon(Main.class.getResource("../images/right2.PNG"));//
 	private ImageIcon mainStart01 = new ImageIcon(Main.class.getResource("../images/mainStart01.jpg"));//
 	private ImageIcon mainStart02 = new ImageIcon(Main.class.getResource("../images/mainStart02.jpg"));//
-	private ImageIcon mainBack = new ImageIcon(Main.class.getResource("../images/barbar.Png"));//
-	private ImageIcon mainBackEnter = new ImageIcon(Main.class.getResource("../images/barbar.Png"));//
+	private ImageIcon mainBack = new ImageIcon(Main.class.getResource("../images/mainBackButton01.png"));//
+	private ImageIcon mainBackEnter = new ImageIcon(Main.class.getResource("../images/mainBackButton02.png"));//
 	
 	
 	
@@ -61,9 +65,11 @@ public class BeatGame extends JFrame {
 	private JButton mainStart = new JButton(mainStart01);
 	private JButton mainBackButton = new JButton(mainBack);
 	private JButton firstBackButton = new JButton(mainBack);
-	
-	private boolean isGameScreen = false; 
-	private boolean isMainScreen = false;
+	private JButton methodButton = new JButton(methodBasic);
+	private JButton mainBackButton2 = new JButton(mainBack);
+	private boolean isGameScreen = false; //게임화면
+	private boolean isMainScreen = false; //메인화면
+	private boolean ismethodScreen = false; //게임방법 화면
 
 	public BeatGame() {
 
@@ -78,8 +84,10 @@ public class BeatGame extends JFrame {
 		setLayout(null);
 		ImageIcon img = new ImageIcon(("viva02.png"));
 		img = new ImageIcon(img.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH));
+
 		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS,MP3")); // num =0
 		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "VIVA,MP3")); // num=1
+
 		exitButton.setBounds(1250, 0, 30, 30);
 		exitButton.setBorderPainted(false);
 		exitButton.setContentAreaFilled(false);
@@ -90,11 +98,13 @@ public class BeatGame extends JFrame {
 				exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// 손가락모양
 				exitButton.setIcon(extiButton02); // 임의로 지정한 그림으로 변경
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) { // 마우스를 X버튼에서 올리지 않았을 때
 				exitButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 디폴트값
 				exitButton.setIcon(extiButton01); // 다시 임의로 지정한 그림으로 변경
 			}
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.exit(0);
@@ -142,6 +152,7 @@ public class BeatGame extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) { // 시작버튼 눌렀을때 이벤트처리
+			
 				mainScreen();
 
 			}
@@ -246,6 +257,7 @@ public class BeatGame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				gameStart(nowSelected);
+				
 			}
 		});
 
@@ -302,6 +314,33 @@ public class BeatGame extends JFrame {
 		});
 
 		add(mainBackButton);
+		
+		
+		methodButton.setVisible(false);
+		methodButton.setBounds(20, 50, 230, 70);
+		methodButton.setBorderPainted(false);
+		methodButton.setContentAreaFilled(false);
+		methodButton.setFocusPainted(false);
+		methodButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) { // 마우스를 X버튼 위에 올렸을 때
+				methodButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// 손가락모양
+				methodButton.setIcon(methodEnter); // 임의로 지정한 그림으로 변경
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) { // 마우스를 X버튼에서 올리지 않았을 때
+				methodButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 디폴트값
+				methodButton.setIcon(methodBasic); // 다시 임의로 지정한 그림으로 변경
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				methodScreen();
+			}	
+		});
+
+		add(methodButton);
 	}
 
 	public void paint(Graphics g) {
@@ -316,8 +355,51 @@ public class BeatGame extends JFrame {
 		if (isMainScreen) {
 			g.drawImage(nowImage, 420, 150, null);
 		}
-		if(isGameScreen == true) {
+		if (isGameScreen == true) {
 			g.drawImage(gameTitle, 0, 660, null);
+			if (nowSelected == 0) {
+				g.setColor(Color.BLACK);
+				g.setFont(new Font("볼드", Font.BOLD, 30));
+				g.drawString("BTS-봄날", 20, 700);
+			}
+			
+			if(nowSelected ==1) {
+				g.setColor(Color.BLACK);
+				g.setFont(new Font("볼드", Font.BOLD, 30));
+				g.drawString("coldPlay-Viva La Vida", 20, 700);
+			}
+			
+			//노트가 내려오는 라인과 각 노트의 라인의 구분선
+			g.drawImage(noteLine, 295, 30, null);
+			g.drawImage(divisionLine, 294, 30, null);
+			g.drawImage(divisionLine, 394, 30, null);
+			g.drawImage(noteLine, 397, 30, null);
+			g.drawImage(divisionLine, 495, 30, null);
+			g.drawImage(noteLine, 498, 30, null);
+			g.drawImage(divisionLine, 598, 30, null);
+			g.drawImage(noteLine, 602, 30, null);
+			g.drawImage(divisionLine, 698, 30, null);
+			g.drawImage(noteLine, 702, 30, null);
+			g.drawImage(divisionLine, 800, 30, null);
+			g.drawImage(noteLine, 804, 30, null);
+			g.drawImage(divisionLine, 900, 30, null);
+			
+			
+			
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("볼드", Font.BOLD, 30));
+			g.drawString("S", 338, 640);
+			g.drawString("D", 440, 640);
+			g.drawString("F", 540, 640);
+			g.drawString("J", 640, 640);
+			g.drawString("K", 740, 640);
+			g.drawString("L", 840, 640);
+			
+			g.drawImage(line, 0, 605 , null);
+			
+		
+		
+		
 		}
 		paintComponents(g); // JLabel을 JFrame에 넣어줌
 		this.repaint();
@@ -332,6 +414,22 @@ public class BeatGame extends JFrame {
 		selectedMusic.start();
 	}
 
+	
+	public void methodScreen() {
+		if (selectedMusic != null) {
+			selectedMusic.close();
+		}
+		background = new ImageIcon(Main.class.getResource("../images/methodBackGround.jpg")).getImage();
+		isMainScreen = false;
+		isGameScreen = false;;
+		ismethodScreen = true;
+		leftButton.setVisible(false);
+		rightButton.setVisible(false);
+		mainStart.setVisible(false);
+		methodButton.setVisible(false);
+		mainBackButton.setVisible(true);
+	}
+	
 	public void mainScreen() {
 
 		startButton.setVisible(false); // 스타트 버튼을 눌렀을 때, 스타트 버튼 삭제
@@ -341,8 +439,9 @@ public class BeatGame extends JFrame {
 		leftButton.setVisible(true);
 		rightButton.setVisible(true);
 		mainStart.setVisible(true);
+		methodButton.setVisible(true);
 		firstBackButton.setVisible(true);
-
+		
 		nowList(0);
 	}
 
@@ -359,17 +458,19 @@ public class BeatGame extends JFrame {
 				.getImage();
 		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
 		nowList(nowSelected);
-		
+
 	}
 
 	public void mainBack() {
 		isMainScreen = true;
-		
-		leftButton.setVisible(true);
-		rightButton.setVisible(true);
-		mainStart.setVisible(true);
+
+		leftButton.setVisible(true);//왼쪽 버튼 보이게
+		rightButton.setVisible(true);//오른쪽 버튼 보이게 
+		mainStart.setVisible(true); // 게임시작 버튼 보이게
 		background = new ImageIcon(Main.class.getResource("../images/maingame.jpg")).getImage();
-		mainBackButton.setVisible(false);
+		//배경화면 다시 바꿔주고
+		mainBackButton.setVisible(false); // 이전으로 버튼 삭제
+		methodButton.setVisible(true);
 		nowList(nowSelected);// 다시 현재 곡리스트의 번호를 재생함
 		isGameScreen = false;
 	}

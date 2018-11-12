@@ -5,6 +5,7 @@ public class List {
 	private String gameImage; // 게임중 이미지
 	private String gameMusic; // 게임에있는 음악
 	private String startMusic; // 게임 선택창 음악
+	private String gameTitle; //게임 시작화면에 나타나는 음악의 제목 (미구현)
 
 
 	public List(String startImage, String gameImage, String startMusic, String gameMusic) {

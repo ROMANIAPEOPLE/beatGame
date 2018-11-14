@@ -25,8 +25,9 @@ public class BeatGame extends JFrame {
 //	private Image note = new ImageIcon(Main.class.getResource("../images/Note.png")).getImage();// 노트
 	private Image noteLine = new ImageIcon(Main.class.getResource("../images/NoteLine.png")).getImage();// 구분선
 	private Image gameTitle = new ImageIcon(Main.class.getResource("../images/gameTitle.png")).getImage();
-	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();//판정라인
+	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();// 판정라인
 	private Image divisionLine = new ImageIcon(Main.class.getResource("../images/divisionLine.png")).getImage();
+	private Image inMethod = new ImageIcon(Main.class.getResource("../images/inMethodButton.png")).getImage();
 	private ImageIcon extiButton02 = new ImageIcon(Main.class.getResource("../images/extiButton02.jpg"));
 	// 마우스가 닿을떄의 이미지
 	private ImageIcon extiButton01 = new ImageIcon(Main.class.getResource("../images/extiButton01.jpg"));
@@ -47,9 +48,7 @@ public class BeatGame extends JFrame {
 	private ImageIcon mainStart02 = new ImageIcon(Main.class.getResource("../images/mainStart02.jpg"));//
 	private ImageIcon mainBack = new ImageIcon(Main.class.getResource("../images/mainBackButton01.png"));//
 	private ImageIcon mainBackEnter = new ImageIcon(Main.class.getResource("../images/mainBackButton02.png"));//
-	
-	
-	
+
 	ArrayList<List> List = new ArrayList<List>();
 
 	private Music selectedMusic; // 현재 음악(메인창)
@@ -66,10 +65,10 @@ public class BeatGame extends JFrame {
 	private JButton mainBackButton = new JButton(mainBack);
 	private JButton firstBackButton = new JButton(mainBack);
 	private JButton methodButton = new JButton(methodBasic);
-	private JButton mainBackButton2 = new JButton(mainBack);
-	private boolean isGameScreen = false; //게임화면
-	private boolean isMainScreen = false; //메인화면
-	private boolean ismethodScreen = false; //게임방법 화면
+//	private JButton mainBackButton2 = new JButton(mainBack);  (사용X)
+	private boolean isGameScreen = false; // 게임화면
+	private boolean isMainScreen = false; // 메인화면
+	private boolean isMethodScreen = false; // 게임방법 화면
 
 	public BeatGame() {
 
@@ -152,7 +151,7 @@ public class BeatGame extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) { // 시작버튼 눌렀을때 이벤트처리
-			
+
 				mainScreen();
 
 			}
@@ -257,7 +256,7 @@ public class BeatGame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				gameStart(nowSelected);
-				
+
 			}
 		});
 
@@ -314,10 +313,9 @@ public class BeatGame extends JFrame {
 		});
 
 		add(mainBackButton);
-		
-		
+
 		methodButton.setVisible(false);
-		methodButton.setBounds(20, 50, 230, 70);
+		methodButton.setBounds(20, 70, 230, 70);
 		methodButton.setBorderPainted(false);
 		methodButton.setContentAreaFilled(false);
 		methodButton.setFocusPainted(false);
@@ -337,7 +335,7 @@ public class BeatGame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				methodScreen();
-			}	
+			}
 		});
 
 		add(methodButton);
@@ -362,14 +360,14 @@ public class BeatGame extends JFrame {
 				g.setFont(new Font("볼드", Font.BOLD, 30));
 				g.drawString("BTS-봄날", 20, 700);
 			}
-			
-			if(nowSelected ==1) {
+
+			if (nowSelected == 1) {
 				g.setColor(Color.BLACK);
 				g.setFont(new Font("볼드", Font.BOLD, 30));
 				g.drawString("coldPlay-Viva La Vida", 20, 700);
 			}
-			
-			//노트가 내려오는 라인과 각 노트의 라인의 구분선
+
+			// 노트가 내려오는 라인과 각 노트의 라인의 구분선
 			g.drawImage(noteLine, 295, 30, null);
 			g.drawImage(divisionLine, 294, 30, null);
 			g.drawImage(divisionLine, 394, 30, null);
@@ -383,9 +381,7 @@ public class BeatGame extends JFrame {
 			g.drawImage(divisionLine, 800, 30, null);
 			g.drawImage(noteLine, 804, 30, null);
 			g.drawImage(divisionLine, 900, 30, null);
-			
-			
-			
+
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("볼드", Font.BOLD, 30));
 			g.drawString("S", 338, 640);
@@ -394,12 +390,14 @@ public class BeatGame extends JFrame {
 			g.drawString("J", 640, 640);
 			g.drawString("K", 740, 640);
 			g.drawString("L", 840, 640);
+
+			g.drawImage(line, 0, 605, null);
+
+		}
+		
+		if(isMethodScreen) {
+			g.drawImage(inMethod, 200, 100, null);
 			
-			g.drawImage(line, 0, 605 , null);
-			
-		
-		
-		
 		}
 		paintComponents(g); // JLabel을 JFrame에 넣어줌
 		this.repaint();
@@ -414,22 +412,22 @@ public class BeatGame extends JFrame {
 		selectedMusic.start();
 	}
 
-	
 	public void methodScreen() {
 		if (selectedMusic != null) {
 			selectedMusic.close();
 		}
 		background = new ImageIcon(Main.class.getResource("../images/methodBackGround.jpg")).getImage();
 		isMainScreen = false;
-		isGameScreen = false;;
-		ismethodScreen = true;
+		isGameScreen = false;
+		;
+		isMethodScreen = true;
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		mainStart.setVisible(false);
 		methodButton.setVisible(false);
 		mainBackButton.setVisible(true);
 	}
-	
+
 	public void mainScreen() {
 
 		startButton.setVisible(false); // 스타트 버튼을 눌렀을 때, 스타트 버튼 삭제
@@ -441,7 +439,7 @@ public class BeatGame extends JFrame {
 		mainStart.setVisible(true);
 		methodButton.setVisible(true);
 		firstBackButton.setVisible(true);
-		
+
 		nowList(0);
 	}
 
@@ -456,6 +454,7 @@ public class BeatGame extends JFrame {
 		mainStart.setVisible(false);
 		background = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getGameImage()))
 				.getImage();
+		methodButton.setVisible(false);
 		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
 		nowList(nowSelected);
 
@@ -463,16 +462,16 @@ public class BeatGame extends JFrame {
 
 	public void mainBack() {
 		isMainScreen = true;
-
-		leftButton.setVisible(true);//왼쪽 버튼 보이게
-		rightButton.setVisible(true);//오른쪽 버튼 보이게 
+		leftButton.setVisible(true);// 왼쪽 버튼 보이게
+		rightButton.setVisible(true);// 오른쪽 버튼 보이게
 		mainStart.setVisible(true); // 게임시작 버튼 보이게
 		background = new ImageIcon(Main.class.getResource("../images/maingame.jpg")).getImage();
-		//배경화면 다시 바꿔주고
+		// 배경화면 다시 바꿔주고
 		mainBackButton.setVisible(false); // 이전으로 버튼 삭제
 		methodButton.setVisible(true);
 		nowList(nowSelected);// 다시 현재 곡리스트의 번호를 재생함
 		isGameScreen = false;
+		isMethodScreen= false;
 	}
 
 //	public void firtBack() {    (게임 처음화면으로 가는 버튼은 불필요)

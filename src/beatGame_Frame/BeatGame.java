@@ -53,7 +53,7 @@ public class BeatGame extends JFrame {
 
 	private Music selectedMusic; // 현재 음악(메인창)
 	private Image nowImage; // 현재 선택된 음악의 이미지(메인창)
-	private int nowSelected = 0; // 현재 선택된 음악의 번호(0번부터 시작)
+	public int nowSelected = 0; // 현재 선택된 음악의 번호(0번부터 시작)
 
 	private int mouseX, mouseY;
 	private JButton leftButton = new JButton(left1);
@@ -69,6 +69,7 @@ public class BeatGame extends JFrame {
 	private boolean isGameScreen = false; // 게임화면
 	private boolean isMainScreen = false; // 메인화면
 	private boolean isMethodScreen = false; // 게임방법 화면
+	public static  Game game = new Game();
 
 	public BeatGame() {
 
@@ -81,6 +82,8 @@ public class BeatGame extends JFrame {
 		setVisible(true);
 		setBackground(new Color(0, 0, 0, 0));
 		setLayout(null);
+		addKeyListener(new key()); // 키보드 이벤트처리
+
 		ImageIcon img = new ImageIcon(("viva02.png"));
 		img = new ImageIcon(img.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH));
 
@@ -255,7 +258,7 @@ public class BeatGame extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				gameStart(nowSelected);
+				gameScreen(nowSelected);
 
 			}
 		});
@@ -354,7 +357,7 @@ public class BeatGame extends JFrame {
 			g.drawImage(nowImage, 420, 150, null);
 		}
 		if (isGameScreen == true) {
-			g.drawImage(gameTitle, 0, 660, null);
+			game.screenDraw(g);
 			if (nowSelected == 0) {
 				g.setColor(Color.BLACK);
 				g.setFont(new Font("볼드", Font.BOLD, 30));
@@ -367,37 +370,11 @@ public class BeatGame extends JFrame {
 				g.drawString("coldPlay-Viva La Vida", 20, 700);
 			}
 
-			// 노트가 내려오는 라인과 각 노트의 라인의 구분선
-			g.drawImage(noteLine, 295, 30, null);
-			g.drawImage(divisionLine, 294, 30, null);
-			g.drawImage(divisionLine, 394, 30, null);
-			g.drawImage(noteLine, 397, 30, null);
-			g.drawImage(divisionLine, 495, 30, null);
-			g.drawImage(noteLine, 498, 30, null);
-			g.drawImage(divisionLine, 598, 30, null);
-			g.drawImage(noteLine, 602, 30, null);
-			g.drawImage(divisionLine, 698, 30, null);
-			g.drawImage(noteLine, 702, 30, null);
-			g.drawImage(divisionLine, 800, 30, null);
-			g.drawImage(noteLine, 804, 30, null);
-			g.drawImage(divisionLine, 900, 30, null);
-
-			g.setColor(Color.WHITE);
-			g.setFont(new Font("볼드", Font.BOLD, 30));
-			g.drawString("S", 338, 640);
-			g.drawString("D", 440, 640);
-			g.drawString("F", 540, 640);
-			g.drawString("J", 640, 640);
-			g.drawString("K", 740, 640);
-			g.drawString("L", 840, 640);
-
-			g.drawImage(line, 0, 605, null);
-
 		}
-		
-		if(isMethodScreen) {
+
+		if (isMethodScreen) {
 			g.drawImage(inMethod, 200, 100, null);
-			
+
 		}
 		paintComponents(g); // JLabel을 JFrame에 넣어줌
 		this.repaint();
@@ -443,7 +420,7 @@ public class BeatGame extends JFrame {
 		nowList(0);
 	}
 
-	public void gameStart(int nowSelected) {
+	public void gameScreen(int nowSelected) {
 		if (selectedMusic != null) {
 			selectedMusic.close();
 		}
@@ -457,7 +434,6 @@ public class BeatGame extends JFrame {
 		methodButton.setVisible(false);
 		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
 		nowList(nowSelected);
-
 	}
 
 	public void mainBack() {
@@ -471,7 +447,7 @@ public class BeatGame extends JFrame {
 		methodButton.setVisible(true);
 		nowList(nowSelected);// 다시 현재 곡리스트의 번호를 재생함
 		isGameScreen = false;
-		isMethodScreen= false;
+		isMethodScreen = false;
 	}
 
 //	public void firtBack() {    (게임 처음화면으로 가는 버튼은 불필요)

@@ -49,7 +49,7 @@ public class BeatGame extends JFrame {
 	private ImageIcon mainBack = new ImageIcon(Main.class.getResource("../images/mainBackButton01.png"));//
 	private ImageIcon mainBackEnter = new ImageIcon(Main.class.getResource("../images/mainBackButton02.png"));//
 
-	ArrayList<List> List = new ArrayList<List>();
+	
 
 	private Music selectedMusic; // 현재 음악(메인창)
 	private Image nowImage; // 현재 선택된 음악의 이미지(메인창)
@@ -69,6 +69,7 @@ public class BeatGame extends JFrame {
 	private boolean isGameScreen = false; // 게임화면
 	private boolean isMainScreen = false; // 메인화면
 	private boolean isMethodScreen = false; // 게임방법 화면
+	ArrayList<List> List = new ArrayList<List>();
 	public static  Game game = new Game();
 
 	public BeatGame() {
@@ -434,6 +435,7 @@ public class BeatGame extends JFrame {
 		methodButton.setVisible(false);
 		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
 		nowList(nowSelected);
+		setFocusable(true); // 11월 15일 발생한 오류 해결
 	}
 
 	public void mainBack() {

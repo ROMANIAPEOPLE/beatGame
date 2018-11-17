@@ -17,6 +17,13 @@ public class Game extends Thread{ //키보드 이벤트 리스너가 정상 작동하기 위해 쓰
 	private Image gameTitle = new ImageIcon(Main.class.getResource("../images/gameTitle.png")).getImage();
 	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();// 판정라인	
 	private Image divisionLine = new ImageIcon(Main.class.getResource("../images/divisionLine.png")).getImage();
+	
+	private String gameName;
+	
+	public Game(String gameName) {
+		this.gameName=gameName;
+	}
+	
 	public void screenDraw(Graphics g) {
 		g.drawImage(gameTitle, 0, 660, null);
 	
@@ -34,8 +41,6 @@ public class Game extends Thread{ //키보드 이벤트 리스너가 정상 작동하기 위해 쓰
 		g.drawImage(noteLineK, 702, 30, null);
 		g.drawImage(divisionLine, 800, 30, null);
 		g.drawImage(noteLineL, 804, 30, null);
-		g.drawImage(divisionLine, 900, 30, null);
-
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("볼드", Font.BOLD, 30));
 		g.drawString("S", 338, 640);
@@ -44,8 +49,11 @@ public class Game extends Thread{ //키보드 이벤트 리스너가 정상 작동하기 위해 쓰
 		g.drawString("J", 640, 640);
 		g.drawString("K", 740, 640);
 		g.drawString("L", 840, 640);
-
 		g.drawImage(line, 0, 605, null);
+		g.setColor(Color.BLACK);
+		g.drawString(gameName, 20, 700);
+		
+	
 	}
 	
 	public void EnterdS() {

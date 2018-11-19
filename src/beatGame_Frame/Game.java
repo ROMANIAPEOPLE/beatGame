@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 public class Game extends Thread{ //키보드 이벤트 리스너가 정상 작동하기 위해 쓰레드를 상속받음
@@ -19,16 +21,19 @@ public class Game extends Thread{ //키보드 이벤트 리스너가 정상 작동하기 위해 쓰
 	private Image divisionLine = new ImageIcon(Main.class.getResource("../images/divisionLine.png")).getImage();
 	
 	private String gameName;
+	private Music gameMusic;
+	ArrayList<Note> List2 = new ArrayList<Note>();
 	
 	public Game(String gameName) {
 		this.gameName=gameName;
+		gameMusic = new Music(this.gameName, false);
+		gameMusic.start();
+		flowNote(gameName);
 	}
-	
-	public void screenDraw(Graphics g) {
-		g.drawImage(gameTitle, 0, 660, null);
-	
 
-		// 노트가 내려오는 라인과 각 노트의 라인의 구분선
+	public void screenDraw(Graphics g) {
+		
+		g.drawImage(gameTitle, 0, 660, null);
 		g.drawImage(noteLineS, 295, 30, null);
 		g.drawImage(divisionLine, 294, 30, null);
 		g.drawImage(divisionLine, 394, 30, null);
@@ -41,6 +46,14 @@ public class Game extends Thread{ //키보드 이벤트 리스너가 정상 작동하기 위해 쓰
 		g.drawImage(noteLineK, 702, 30, null);
 		g.drawImage(divisionLine, 800, 30, null);
 		g.drawImage(noteLineL, 804, 30, null);
+		g.setFont(new Font("볼드", Font.BOLD, 30));
+		g.setColor(Color.BLACK);
+		g.drawString(gameName, 20, 700);
+		for(int i=0; i<List2.size(); i++) {
+			Note note = List2.get(i);
+			note.screenDraw(g);
+		}
+		
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("볼드", Font.BOLD, 30));
 		g.drawString("S", 338, 640);
@@ -50,8 +63,7 @@ public class Game extends Thread{ //키보드 이벤트 리스너가 정상 작동하기 위해 쓰
 		g.drawString("K", 740, 640);
 		g.drawString("L", 840, 640);
 		g.drawImage(line, 0, 605, null);
-		g.setColor(Color.BLACK);
-		g.drawString(gameName, 20, 700);
+	
 		
 	
 	}
@@ -92,8 +104,27 @@ public class Game extends Thread{ //키보드 이벤트 리스너가 정상 작동하기 위해 쓰
 	public void ExitedL() {
 		noteLineL = new ImageIcon(Main.class.getResource("../images/NoteLine.png")).getImage();
 	}
+
+	
+	
+	public void flowNote(String gameName) {
+	
+//		List2.add(new Note(295,120));
+//		List2.add(new Note(396,580));
+//		List2.add(new Note(498,500));
+//		List2.add(new Note(599,325));
+//		List2.add(new Note(700,305));
+//		List2.add(new Note(802,305));
+		
+		Note note = new Note(295);
+		note.start();
+		List2.add(note);
+
+	}
+	
 	@Override
 	public void run() {
+		
 	
 	}
 	

@@ -28,7 +28,7 @@ public class key extends KeyAdapter {
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
+	public void keyReleased(KeyEvent e) { //손 떗을때
 
 //		if (BeatGame.game == null) { // 게임이 진행중이 아니라면, 키보드 이벤트를 실행하지 않음.
 //			return;

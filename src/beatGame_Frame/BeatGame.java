@@ -371,9 +371,7 @@ public class BeatGame extends JFrame {
 		this.repaint();
 	}
 	
-	public void Notes(String titleName) {
-		
-	}
+	
 	
 
 	public void nowList(int nowSelected) { // 현재 메인화면에서 실행중인 곡의 정보
@@ -484,5 +482,8 @@ public class BeatGame extends JFrame {
 			nowList(nowSelected);
 		}
 	}
+	
+	
+	
 
 }

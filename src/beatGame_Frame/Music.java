@@ -22,7 +22,7 @@ public class Music extends Thread {
 			player = new Player(bis);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			;
+			
 		}
 	}
 

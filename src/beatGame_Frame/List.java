@@ -5,21 +5,21 @@ public class List {
 	private String gameImage; // 게임중 이미지
 	private String gameMusic; // 게임에있는 음악
 	private String startMusic; // 게임 선택창 음악
-	private String gameName;// 게임음악제목
+	private String titleName;// 게임음악제목
 
-	public List(String startImage, String gameImage, String startMusic, String gameMusic, String gameName) {
+	public List(String startImage, String gameImage, String startMusic, String gameMusic, String titleName) {
 		super();
-		this.startImage = startImage;
-		this.gameImage = gameImage;
-		this.startMusic = startMusic;
-		this.gameMusic = gameMusic;
-		this.gameName = gameName;
+		this.startImage = startImage; //게임 표지
+		this.gameImage = gameImage; //인게임 배경
+		this.startMusic = startMusic; // 게임 선택창 음악
+		this.gameMusic = gameMusic; //인게임 음악
+		this.titleName = titleName; //곡 제목
 		
 	}
 
 	public String getGameImage() {
 		return gameImage;
-	}
+	} 
 
 	public void setGameImage(String gameImage) {
 		this.gameImage = gameImage;
@@ -48,12 +48,12 @@ public class List {
 	public void setStartMusic(String startMusic) {
 		this.startMusic = startMusic;
 	}
-	public String getGameName() {
-		return gameName;
+	public String gettitleName() {
+		return titleName;
 	}
 
-	public void setGameName(String gameName) {
-		this.gameName = gameName;
+	public void settitleName(String titleName) {
+		this.titleName = titleName;
 	}
 
 

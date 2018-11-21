@@ -21,12 +21,14 @@ public class Game extends Thread{ //키보드 이벤트 리스너가 정상 작동하기 위해 쓰
 	private Image divisionLine = new ImageIcon(Main.class.getResource("../images/divisionLine.png")).getImage();
 	
 	private String gameName;
+	private String musicTitle;
 	private Music gameMusic;
 	ArrayList<Note> List2 = new ArrayList<Note>();
 	
-	public Game(String gameName) {
+	public Game(String gameName, String musicTitle) {
 		this.gameName=gameName;
-		gameMusic = new Music(this.gameName, false);
+		this.musicTitle=musicTitle;
+		gameMusic = new Music(this.musicTitle, false);
 		gameMusic.start();
 		flowNote(gameName);
 	}
@@ -105,6 +107,10 @@ public class Game extends Thread{ //키보드 이벤트 리스너가 정상 작동하기 위해 쓰
 		noteLineL = new ImageIcon(Main.class.getResource("../images/NoteLine.png")).getImage();
 	}
 
+	public void close() {
+		gameMusic.close();
+		this.interrupt();
+	}
 	
 	
 	public void flowNote(String gameName) {

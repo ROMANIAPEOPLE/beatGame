@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 public class Note extends Thread {
 
-	private Image noteImage = new ImageIcon(Main.class.getResource("../images/noteImage.png")).getImage();// ��Ʈ
+	private Image noteImage = new ImageIcon(Main.class.getResource("../images/noteImage.png")).getImage();// ³ëÆ®
 	int x, y= 605 - 1000 / 9*5;
 	String noteName;
 

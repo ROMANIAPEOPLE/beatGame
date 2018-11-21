@@ -22,19 +22,19 @@ public class BeatGame extends JFrame {
 	private Image background = new ImageIcon(Main.class.getResource("../images/Main(Title).jpg")).getImage();
 	private Image methodBackGround = new ImageIcon(Main.class.getResource("../images/methodBackGround.jpg")).getImage();
 	private Image viva01 = new ImageIcon(Main.class.getResource("../images/viva01.png")).getImage();
-//	private Image note = new ImageIcon(Main.class.getResource("../images/Note.png")).getImage();// ³ëÆ®
-	private Image noteLine = new ImageIcon(Main.class.getResource("../images/NoteLine.png")).getImage();// ±¸ºĞ¼±
+//	private Image note = new ImageIcon(Main.class.getResource("../images/Note.png")).getImage();// ë…¸íŠ¸
+	private Image noteLine = new ImageIcon(Main.class.getResource("../images/NoteLine.png")).getImage();// êµ¬ë¶„ì„ 
 	private Image gameTitle = new ImageIcon(Main.class.getResource("../images/gameTitle.png")).getImage();
-	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();// ÆÇÁ¤¶óÀÎ
+	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();// íŒì •ë¼ì¸
 	private Image divisionLine = new ImageIcon(Main.class.getResource("../images/divisionLine.png")).getImage();
 	private Image inMethod = new ImageIcon(Main.class.getResource("../images/inMethodButton.png")).getImage();
 	private ImageIcon extiButton02 = new ImageIcon(Main.class.getResource("../images/extiButton02.jpg"));
-	// ¸¶¿ì½º°¡ ´êÀ»‹šÀÇ ÀÌ¹ÌÁö
+	// ë§ˆìš°ìŠ¤ê°€ ë‹¿ì„Â‹Âšì˜ ì´ë¯¸ì§€
 	private ImageIcon extiButton01 = new ImageIcon(Main.class.getResource("../images/extiButton01.jpg"));
-	// ±âº» Á¾·á ÀÌ¹ÌÁö
+	// ê¸°ë³¸ ì¢…ë£Œ ì´ë¯¸ì§€
 	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("../images/Bar.jpg")));
 	private ImageIcon st1 = new ImageIcon(Main.class.getResource("../images/startintro.PNG"));//
-	// °ÔÀÓ½ÃÀÛ¹öÆ°
+	// ê²Œì„ì‹œì‘ë²„íŠ¼
 	private ImageIcon methodBasic = new ImageIcon(Main.class.getResource("../images/methodButton01.png"));
 	private ImageIcon methodEnter = new ImageIcon(Main.class.getResource("../images/methodButton02.png"));
 	private ImageIcon st2 = new ImageIcon(Main.class.getResource("../images/Start02.PNG"));
@@ -51,24 +51,24 @@ public class BeatGame extends JFrame {
 
 	
 
-	private Music selectedMusic; // ÇöÀç À½¾Ç(¸ŞÀÎÃ¢)
-	private Image nowImage; // ÇöÀç ¼±ÅÃµÈ À½¾ÇÀÇ ÀÌ¹ÌÁö(¸ŞÀÎÃ¢)
-	public int nowSelected = 0; // ÇöÀç ¼±ÅÃµÈ À½¾ÇÀÇ ¹øÈ£(0¹øºÎÅÍ ½ÃÀÛ)
+	private Music selectedMusic; // í˜„ì¬ ìŒì•…(ë©”ì¸ì°½)
+	private Image nowImage; // í˜„ì¬ ì„ íƒëœ ìŒì•…ì˜ ì´ë¯¸ì§€(ë©”ì¸ì°½)
+	public int nowSelected = 0; // í˜„ì¬ ì„ íƒëœ ìŒì•…ì˜ ë²ˆí˜¸(0ë²ˆë¶€í„° ì‹œì‘)
 
 	private int mouseX, mouseY;
 	private JButton leftButton = new JButton(left1);
 	private JButton rightButton = new JButton(right1);
-	private JButton exitButton = new JButton(extiButton01);// ´İ±â ¹öÆ° Ãß°¡
-	private JButton startButton = new JButton(st1); // °ÔÀÓ½ÃÀÛ¹öÆ°
+	private JButton exitButton = new JButton(extiButton01);// ë‹«ê¸° ë²„íŠ¼ ì¶”ê°€
+	private JButton startButton = new JButton(st1); // ê²Œì„ì‹œì‘ë²„íŠ¼
 	private JButton ex = new JButton(ex1);
 	private JButton mainStart = new JButton(mainStart01);
 	private JButton mainBackButton = new JButton(mainBack);
 	private JButton firstBackButton = new JButton(mainBack);
 	private JButton methodButton = new JButton(methodBasic);
-//	private JButton mainBackButton2 = new JButton(mainBack);  (»ç¿ëX)
-	private boolean isGameScreen = false; // °ÔÀÓÈ­¸é
-	private boolean isMainScreen = false; // ¸ŞÀÎÈ­¸é
-	private boolean isMethodScreen = false; // °ÔÀÓ¹æ¹ı È­¸é
+//	private JButton mainBackButton2 = new JButton(mainBack);  (ì‚¬ìš©X)
+	private boolean isGameScreen = false; // ê²Œì„í™”ë©´
+	private boolean isMainScreen = false; // ë©”ì¸í™”ë©´
+	private boolean isMethodScreen = false; // ê²Œì„ë°©ë²• í™”ë©´
 	public static  Game game;
 	
 	ArrayList<List> List = new ArrayList<List>();
@@ -79,18 +79,18 @@ public class BeatGame extends JFrame {
 		setUndecorated(true);
 		setTitle("BeatGame");
 		setSize(Main.SCREEN_WIDTH, Main.SCRREN_HEIGHT);
-		setResizable(false); // ¼öÁ¤ ºÒ°¡´É
-		setLocationRelativeTo(null);// Ã¢À» Á¤Áß¾Ó¿¡
+		setResizable(false); // ìˆ˜ì • ë¶ˆê°€ëŠ¥
+		setLocationRelativeTo(null);// ì°½ì„ ì •ì¤‘ì•™ì—
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setBackground(new Color(0, 0, 0, 0));
 		setLayout(null);
-		addKeyListener(new key()); // Å°º¸µå ÀÌº¥Æ®Ã³¸®
+		addKeyListener(new key()); // í‚¤ë³´ë“œ ì´ë²¤íŠ¸ì²˜ë¦¬
 
 		ImageIcon img = new ImageIcon(("viva02.png"));
 		img = new ImageIcon(img.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH));
 
-		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS,MP3", "BTS - º½³¯" )); // num =0
+		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS,MP3", "BTS - ë´„ë‚ " )); // num =0
 		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "VIVA,MP3" , "coldPlay-Viva La Vida")); // num=1
 
 		exitButton.setBounds(1250, 0, 30, 30);
@@ -99,15 +99,15 @@ public class BeatGame extends JFrame {
 		exitButton.setFocusPainted(false);
 		exitButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ° À§¿¡ ¿Ã·ÈÀ» ¶§
-				exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ¼Õ°¡¶ô¸ğ¾ç
-				exitButton.setIcon(extiButton02); // ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseEntered(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ ìœ„ì— ì˜¬ë ¸ì„ ë•Œ
+				exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ì†ê°€ë½ëª¨ì–‘
+				exitButton.setIcon(extiButton02); // ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
-			public void mouseExited(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ°¿¡¼­ ¿Ã¸®Áö ¾Ê¾ÒÀ» ¶§
-				exitButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // µğÆúÆ®°ª
-				exitButton.setIcon(extiButton01); // ´Ù½Ã ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseExited(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ì—ì„œ ì˜¬ë¦¬ì§€ ì•Šì•˜ì„ ë•Œ
+				exitButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // ë””í´íŠ¸ê°’
+				exitButton.setIcon(extiButton01); // ë‹¤ì‹œ ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
@@ -139,24 +139,24 @@ public class BeatGame extends JFrame {
 		add(menuBar);
 
 		startButton.setBounds(40, 100, 400, 100);
-		startButton.setBorderPainted(false); // Å×µÎ¸® Á¦°Å
-		startButton.setContentAreaFilled(false); // ¿©¹é Á¦°Å
+		startButton.setBorderPainted(false); // í…Œë‘ë¦¬ ì œê±°
+		startButton.setContentAreaFilled(false); // ì—¬ë°± ì œê±°
 		startButton.setFocusPainted(false);
 		startButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) { // ¸¶¿ì½º¸¦ °ÔÀÓ½ÃÀÛ ¹öÆ° À§¿¡ ¿Ã·ÈÀ» ¶§
-				startButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ¼Õ°¡¶ô¸ğ¾ç
-				startButton.setIcon(st2);// ¸¶¿ì½º ¿Ã·ÈÀ»¶§ ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseEntered(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ ê²Œì„ì‹œì‘ ë²„íŠ¼ ìœ„ì— ì˜¬ë ¸ì„ ë•Œ
+				startButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ì†ê°€ë½ëª¨ì–‘
+				startButton.setIcon(st2);// ë§ˆìš°ìŠ¤ ì˜¬ë ¸ì„ë•Œ ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
-			public void mouseExited(MouseEvent e) { // ¸¶¿ì½º¸¦ °ÔÀÓ½ÃÀÛ ¹öÆ°¿¡¼­ Ä¡¿üÀ»¶§
-				startButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // µğÆúÆ®°ª
-				startButton.setIcon(st1); // ¸¶¿ì½º ³»·ÈÀ»¶§ ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseExited(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ ê²Œì„ì‹œì‘ ë²„íŠ¼ì—ì„œ ì¹˜ì› ì„ë•Œ
+				startButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // ë””í´íŠ¸ê°’
+				startButton.setIcon(st1); // ë§ˆìš°ìŠ¤ ë‚´ë ¸ì„ë•Œ ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
-			public void mousePressed(MouseEvent e) { // ½ÃÀÛ¹öÆ° ´­·¶À»¶§ ÀÌº¥Æ®Ã³¸®
+			public void mousePressed(MouseEvent e) { // ì‹œì‘ë²„íŠ¼ ëˆŒë €ì„ë•Œ ì´ë²¤íŠ¸ì²˜ë¦¬
 
 				mainScreen();
 
@@ -171,15 +171,15 @@ public class BeatGame extends JFrame {
 		ex.setFocusPainted(false);
 		ex.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ° À§¿¡ ¿Ã·ÈÀ» ¶§
-				ex.setCursor(new Cursor(Cursor.HAND_CURSOR));// ¼Õ°¡¶ô¸ğ¾ç
-				ex.setIcon(ex2); // ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseEntered(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ ìœ„ì— ì˜¬ë ¸ì„ ë•Œ
+				ex.setCursor(new Cursor(Cursor.HAND_CURSOR));// ì†ê°€ë½ëª¨ì–‘
+				ex.setIcon(ex2); // ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
-			public void mouseExited(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ°¿¡¼­ ¿Ã¸®Áö ¾Ê¾ÒÀ» ¶§
-				ex.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // µğÆúÆ®°ª
-				ex.setIcon(ex1); // ´Ù½Ã ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseExited(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ì—ì„œ ì˜¬ë¦¬ì§€ ì•Šì•˜ì„ ë•Œ
+				ex.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // ë””í´íŠ¸ê°’
+				ex.setIcon(ex1); // ë‹¤ì‹œ ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
@@ -197,15 +197,15 @@ public class BeatGame extends JFrame {
 		leftButton.setFocusPainted(false);
 		leftButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ° À§¿¡ ¿Ã·ÈÀ» ¶§
-				leftButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ¼Õ°¡¶ô¸ğ¾ç
-				leftButton.setIcon(left2); // ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseEntered(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ ìœ„ì— ì˜¬ë ¸ì„ ë•Œ
+				leftButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ì†ê°€ë½ëª¨ì–‘
+				leftButton.setIcon(left2); // ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
-			public void mouseExited(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ°¿¡¼­ ¿Ã¸®Áö ¾Ê¾ÒÀ» ¶§
-				leftButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // µğÆúÆ®°ª
-				leftButton.setIcon(left1); // ´Ù½Ã ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseExited(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ì—ì„œ ì˜¬ë¦¬ì§€ ì•Šì•˜ì„ ë•Œ
+				leftButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // ë””í´íŠ¸ê°’
+				leftButton.setIcon(left1); // ë‹¤ì‹œ ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
@@ -223,15 +223,15 @@ public class BeatGame extends JFrame {
 		rightButton.setFocusPainted(false);
 		rightButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ° À§¿¡ ¿Ã·ÈÀ» ¶§
-				rightButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ¼Õ°¡¶ô¸ğ¾ç
-				rightButton.setIcon(right2); // ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseEntered(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ ìœ„ì— ì˜¬ë ¸ì„ ë•Œ
+				rightButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ì†ê°€ë½ëª¨ì–‘
+				rightButton.setIcon(right2); // ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
-			public void mouseExited(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ°¿¡¼­ ¿Ã¸®Áö ¾Ê¾ÒÀ» ¶§
-				rightButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // µğÆúÆ®°ª
-				rightButton.setIcon(right1); // ´Ù½Ã ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseExited(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ì—ì„œ ì˜¬ë¦¬ì§€ ì•Šì•˜ì„ ë•Œ
+				rightButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // ë””í´íŠ¸ê°’
+				rightButton.setIcon(right1); // ë‹¤ì‹œ ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
@@ -248,15 +248,15 @@ public class BeatGame extends JFrame {
 		mainStart.setFocusPainted(false);
 		mainStart.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ° À§¿¡ ¿Ã·ÈÀ» ¶§
-				mainStart.setCursor(new Cursor(Cursor.HAND_CURSOR));// ¼Õ°¡¶ô¸ğ¾ç
-				mainStart.setIcon(mainStart02); // ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseEntered(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ ìœ„ì— ì˜¬ë ¸ì„ ë•Œ
+				mainStart.setCursor(new Cursor(Cursor.HAND_CURSOR));// ì†ê°€ë½ëª¨ì–‘
+				mainStart.setIcon(mainStart02); // ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
-			public void mouseExited(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ°¿¡¼­ ¿Ã¸®Áö ¾Ê¾ÒÀ» ¶§
-				mainStart.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // µğÆúÆ®°ª
-				mainStart.setIcon(mainStart01); // ´Ù½Ã ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseExited(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ì—ì„œ ì˜¬ë¦¬ì§€ ì•Šì•˜ì„ ë•Œ
+				mainStart.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // ë””í´íŠ¸ê°’
+				mainStart.setIcon(mainStart01); // ë‹¤ì‹œ ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
@@ -275,15 +275,15 @@ public class BeatGame extends JFrame {
 //		firstBackButton.setFocusPainted(false);
 //		firstBackButton.addMouseListener(new MouseAdapter() {
 //			@Override
-//			public void mouseEntered(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ° À§¿¡ ¿Ã·ÈÀ» ¶§
-//				firstBackButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ¼Õ°¡¶ô¸ğ¾ç
-//				firstBackButton.setIcon(mainBackEnter); // ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+//			public void mouseEntered(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ ìœ„ì— ì˜¬ë ¸ì„ ë•Œ
+//				firstBackButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ì†ê°€ë½ëª¨ì–‘
+//				firstBackButton.setIcon(mainBackEnter); // ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 //			}
 //
 //			@Override
-//			public void mouseExited(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ°¿¡¼­ ¿Ã¸®Áö ¾Ê¾ÒÀ» ¶§
-//				firstBackButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // µğÆúÆ®°ª
-//				firstBackButton.setIcon(mainBack); // ´Ù½Ã ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+//			public void mouseExited(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ì—ì„œ ì˜¬ë¦¬ì§€ ì•Šì•˜ì„ ë•Œ
+//				firstBackButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // ë””í´íŠ¸ê°’
+//				firstBackButton.setIcon(mainBack); // ë‹¤ì‹œ ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 //			}
 //
 //			@Override
@@ -301,15 +301,15 @@ public class BeatGame extends JFrame {
 		mainBackButton.setFocusPainted(false);
 		mainBackButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ° À§¿¡ ¿Ã·ÈÀ» ¶§
-				mainBackButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ¼Õ°¡¶ô¸ğ¾ç
-				mainBackButton.setIcon(mainBackEnter); // ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseEntered(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ ìœ„ì— ì˜¬ë ¸ì„ ë•Œ
+				mainBackButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ì†ê°€ë½ëª¨ì–‘
+				mainBackButton.setIcon(mainBackEnter); // ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
-			public void mouseExited(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ°¿¡¼­ ¿Ã¸®Áö ¾Ê¾ÒÀ» ¶§
-				mainBackButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // µğÆúÆ®°ª
-				mainBackButton.setIcon(mainBack); // ´Ù½Ã ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseExited(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ì—ì„œ ì˜¬ë¦¬ì§€ ì•Šì•˜ì„ ë•Œ
+				mainBackButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // ë””í´íŠ¸ê°’
+				mainBackButton.setIcon(mainBack); // ë‹¤ì‹œ ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
@@ -327,15 +327,15 @@ public class BeatGame extends JFrame {
 		methodButton.setFocusPainted(false);
 		methodButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ° À§¿¡ ¿Ã·ÈÀ» ¶§
-				methodButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ¼Õ°¡¶ô¸ğ¾ç
-				methodButton.setIcon(methodEnter); // ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseEntered(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ ìœ„ì— ì˜¬ë ¸ì„ ë•Œ
+				methodButton.setCursor(new Cursor(Cursor.HAND_CURSOR));// ì†ê°€ë½ëª¨ì–‘
+				methodButton.setIcon(methodEnter); // ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
-			public void mouseExited(MouseEvent e) { // ¸¶¿ì½º¸¦ X¹öÆ°¿¡¼­ ¿Ã¸®Áö ¾Ê¾ÒÀ» ¶§
-				methodButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // µğÆúÆ®°ª
-				methodButton.setIcon(methodBasic); // ´Ù½Ã ÀÓÀÇ·Î ÁöÁ¤ÇÑ ±×¸²À¸·Î º¯°æ
+			public void mouseExited(MouseEvent e) { // ë§ˆìš°ìŠ¤ë¥¼ Xë²„íŠ¼ì—ì„œ ì˜¬ë¦¬ì§€ ì•Šì•˜ì„ ë•Œ
+				methodButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // ë””í´íŠ¸ê°’
+				methodButton.setIcon(methodBasic); // ë‹¤ì‹œ ì„ì˜ë¡œ ì§€ì •í•œ ê·¸ë¦¼ìœ¼ë¡œ ë³€ê²½
 			}
 
 			@Override
@@ -367,16 +367,16 @@ public class BeatGame extends JFrame {
 			g.drawImage(inMethod, 200, 100, null);
 
 		}
-		paintComponents(g); // JLabelÀ» JFrame¿¡ ³Ö¾îÁÜ
+		paintComponents(g); // JLabelì„ JFrameì— ë„£ì–´ì¤Œ
 		this.repaint();
 	}
 	
 	
 	
 
-	public void nowList(int nowSelected) { // ÇöÀç ¸ŞÀÎÈ­¸é¿¡¼­ ½ÇÇàÁßÀÎ °îÀÇ Á¤º¸
-		if (selectedMusic != null) // À½¾ÇÀÌ ½ÇÇàÁßÀÌ¶ó¸é
-			selectedMusic.close(); // À½¾ÇÀ» ¸ØÃã
+	public void nowList(int nowSelected) { // í˜„ì¬ ë©”ì¸í™”ë©´ì—ì„œ ì‹¤í–‰ì¤‘ì¸ ê³¡ì˜ ì •ë³´
+		if (selectedMusic != null) // ìŒì•…ì´ ì‹¤í–‰ì¤‘ì´ë¼ë©´
+			selectedMusic.close(); // ìŒì•…ì„ ë©ˆì¶¤
 		nowImage = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getStartImage()))
 				.getImage();
 		selectedMusic = new Music(List.get(nowSelected).getStartMusic(), true);
@@ -401,8 +401,8 @@ public class BeatGame extends JFrame {
 
 	public void mainScreen() {
 
-		startButton.setVisible(false); // ½ºÅ¸Æ® ¹öÆ°À» ´­·¶À» ¶§, ½ºÅ¸Æ® ¹öÆ° »èÁ¦
-		ex.setVisible(false); // ¸¶Âù°¡Áö·Î, Á¾·áÇÏ±â ¹öÆ° »èÁ¦
+		startButton.setVisible(false); // ìŠ¤íƒ€íŠ¸ ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ, ìŠ¤íƒ€íŠ¸ ë²„íŠ¼ ì‚­ì œ
+		ex.setVisible(false); // ë§ˆì°¬ê°€ì§€ë¡œ, ì¢…ë£Œí•˜ê¸° ë²„íŠ¼ ì‚­ì œ
 		isMainScreen = true;
 		background = new ImageIcon(Main.class.getResource("../images/maingame.jpg")).getImage();
 		leftButton.setVisible(true);
@@ -426,27 +426,28 @@ public class BeatGame extends JFrame {
 		background = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getGameImage()))
 				.getImage();
 		methodButton.setVisible(false);
-		mainBackButton.setVisible(true); // °ÔÀÓ½ÃÀÛÈ­¸é¿¡¸¸ ÀÌÀüÀ¸·Î ¹öÆ°ÀÌ ³ªÅ¸³²
-		nowList(nowSelected);
-		setFocusable(true); // 11¿ù 15ÀÏ ¹ß»ıÇÑ ¿À·ù ÇØ°á
-		game = new Game(List.get(nowSelected).getGameName());
+		mainBackButton.setVisible(true); // ê²Œì„ì‹œì‘í™”ë©´ì—ë§Œ ì´ì „ìœ¼ë¡œ ë²„íŠ¼ì´ ë‚˜íƒ€ë‚¨
+//		nowList(nowSelected);
+		setFocusable(true); // 11ì›” 15ì¼ ë°œìƒí•œ ì˜¤ë¥˜ í•´ê²°
+		game = new Game(List.get(nowSelected).gettitleName(), List.get(nowSelected).getStartMusic());
 	}
 
 	public void mainBack() {
 		isMainScreen = true;
-		leftButton.setVisible(true);// ¿ŞÂÊ ¹öÆ° º¸ÀÌ°Ô
-		rightButton.setVisible(true);// ¿À¸¥ÂÊ ¹öÆ° º¸ÀÌ°Ô
-		mainStart.setVisible(true); // °ÔÀÓ½ÃÀÛ ¹öÆ° º¸ÀÌ°Ô
+		leftButton.setVisible(true);// ì™¼ìª½ ë²„íŠ¼ ë³´ì´ê²Œ
+		rightButton.setVisible(true);// ì˜¤ë¥¸ìª½ ë²„íŠ¼ ë³´ì´ê²Œ
+		mainStart.setVisible(true); // ê²Œì„ì‹œì‘ ë²„íŠ¼ ë³´ì´ê²Œ
 		background = new ImageIcon(Main.class.getResource("../images/maingame.jpg")).getImage();
-		// ¹è°æÈ­¸é ´Ù½Ã ¹Ù²ãÁÖ°í
-		mainBackButton.setVisible(false); // ÀÌÀüÀ¸·Î ¹öÆ° »èÁ¦
+		// ë°°ê²½í™”ë©´ ë‹¤ì‹œ ë°”ê¿”ì£¼ê³ 
+		mainBackButton.setVisible(false); // ì´ì „ìœ¼ë¡œ ë²„íŠ¼ ì‚­ì œ
 		methodButton.setVisible(true);
-		nowList(nowSelected);// ´Ù½Ã ÇöÀç °î¸®½ºÆ®ÀÇ ¹øÈ£¸¦ Àç»ıÇÔ
+		nowList(nowSelected);// ë‹¤ì‹œ í˜„ì¬ ê³¡ë¦¬ìŠ¤íŠ¸ì˜ ë²ˆí˜¸ë¥¼ ì¬ìƒí•¨
 		isGameScreen = false;
 		isMethodScreen = false;
+		game.close();
 	}
 
-//	public void firtBack() {    (°ÔÀÓ Ã³À½È­¸éÀ¸·Î °¡´Â ¹öÆ°Àº ºÒÇÊ¿ä)
+//	public void firtBack() {    (ê²Œì„ ì²˜ìŒí™”ë©´ìœ¼ë¡œ ê°€ëŠ” ë²„íŠ¼ì€ ë¶ˆí•„ìš”)
 //		isMainScreen = false;
 //		leftButton.setVisible(false);
 //		rightButton.setVisible(false);
@@ -461,7 +462,7 @@ public class BeatGame extends JFrame {
 //		
 //	}
 
-	public void buttonRight() { // °ÔÀÓ¸ŞÀÎÈ­¸é ¿À¸¥ÂÊ ¹öÆ° È°¼ºÈ­
+	public void buttonRight() { // ê²Œì„ë©”ì¸í™”ë©´ ì˜¤ë¥¸ìª½ ë²„íŠ¼ í™œì„±í™”
 		if (nowSelected == 0) {
 			nowSelected++;
 			nowList(nowSelected);
@@ -473,7 +474,7 @@ public class BeatGame extends JFrame {
 		}
 	}
 
-	public void buttonLeft() { // °ÔÀÓ¸ŞÀÎÈ­¸é ¿ŞÂÊ ¹öÆ° È°¼ºÈ­
+	public void buttonLeft() { // ê²Œì„ë©”ì¸í™”ë©´ ì™¼ìª½ ë²„íŠ¼ í™œì„±í™”
 		if (nowSelected == 1) {
 			nowSelected--;
 			nowList(nowSelected);

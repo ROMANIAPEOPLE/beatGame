@@ -3,7 +3,7 @@ package beatGame_Frame;
 public class beatTime {
 
 	private int time;
-	private String noteSort;
+	private String noteSort; // noteName
 
 	public int getTime() {
 		return time;

@@ -8,12 +8,31 @@ import javax.swing.ImageIcon;
 public class Note extends Thread {
 
 	private Image noteImage = new ImageIcon(Main.class.getResource("../images/noteImage.png")).getImage();// ³ëÆ®
-	int x, y= 605 - 1000 / 9*5;
-	String noteName;
+	int x, y= 10;
+	String noteType;
 
-	public Note(int x) {
-		this.x = x;
-//		this.y = y;
+	public Note(String noteType) {
+		if(noteType.equals("S")) {
+			x=295;
+		}
+		else if(noteType.equals("D")) {
+			x=396;
+		}
+		else if(noteType.equals("F")) {
+			x=498;
+		}
+		else if(noteType.equals("J")) {
+			x=599;
+		}
+		else if(noteType.equals("K")) {
+			x=700;
+		}
+		else if(noteType.equals("L")) {
+			x=802;
+		}
+		this.noteType = noteType;
+
+//	
 	
 
 	}
@@ -24,7 +43,7 @@ public class Note extends Thread {
 	}
 
 	public void flow() {
-		y += 5;
+		y +=3;
 	}
 
 	@Override
@@ -32,7 +51,7 @@ public class Note extends Thread {
 		try {
 			while (true) {
 				flow();
-				Thread.sleep(100);
+				Thread.sleep(10);
 
 			}
 		} catch (Exception e) {

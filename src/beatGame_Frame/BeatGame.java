@@ -69,13 +69,14 @@ public class BeatGame extends JFrame {
 	private boolean isGameScreen = false; // 게임화면
 	private boolean isMainScreen = false; // 메인화면
 	private boolean isMethodScreen = false; // 게임방법 화면
-	public static  Game game;
+	public static  InGameScreen game;
 	
 	ArrayList<List> List = new ArrayList<List>();
 	ArrayList<Note> NoteList = new ArrayList<Note>();
 
 	public BeatGame() {
-
+		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS,MP3", "BTS - 봄날" )); // num =0
+		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "VIVA,MP3" , "coldPlay-Viva La Vida")); // num=1
 		setUndecorated(true);
 		setTitle("BeatGame");
 		setSize(Main.SCREEN_WIDTH, Main.SCRREN_HEIGHT);
@@ -90,8 +91,7 @@ public class BeatGame extends JFrame {
 		ImageIcon img = new ImageIcon(("viva02.png"));
 		img = new ImageIcon(img.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH));
 
-		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS,MP3", "BTS - 봄날" )); // num =0
-		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "VIVA,MP3" , "coldPlay-Viva La Vida")); // num=1
+	
 
 		exitButton.setBounds(1250, 0, 30, 30);
 		exitButton.setBorderPainted(false);
@@ -429,7 +429,8 @@ public class BeatGame extends JFrame {
 		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
 //		nowList(nowSelected);
 		setFocusable(true); // 11월 15일 발생한 오류 해결
-		game = new Game(List.get(nowSelected).gettitleName(), List.get(nowSelected).getStartMusic());
+		game = new InGameScreen(List.get(nowSelected).gettitleName(), List.get(nowSelected).getStartMusic());
+		game.start(); //Game 클래스의 스레드를 실행 
 	}
 
 	public void mainBack() {

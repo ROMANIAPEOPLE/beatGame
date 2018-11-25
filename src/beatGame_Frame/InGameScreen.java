@@ -26,11 +26,11 @@ public class InGameScreen extends Thread { // 키보드 이벤트 리스너가 정상 작동하
 	private Music gameMusic;
 	ArrayList<Note> List2 = new ArrayList<Note>();
 
-	public InGameScreen(String titleName, String musicTitle) {
+	public InGameScreen(String titleName, String musicTitle) { //현재 실행중인 게임에 대한 정보를 담는 생성자
 		this.titleName = titleName;
 		this.musicTitle = musicTitle;
 		gameMusic = new Music(this.musicTitle, false); // isLoop(반복)을 false값으로 지정.
-		gameMusic.start();
+		
 	}
 
 	public void screenDraw(Graphics g) {
@@ -127,11 +127,24 @@ public class InGameScreen extends Thread { // 키보드 이벤트 리스너가 정상 작동하
 	}
 
 	public void flowNote() {
-		beatTime[] beat = { new beatTime(1000, "S"), new beatTime(2000, "D"), new beatTime(3000, "F"),
-				new beatTime(4000, "J"), new beatTime(5000, "K"), new beatTime(6000, "L"), };
-
-		
+		beatTime[] beat = null;
+		if(titleName.equals("BTS - 봄날")) {
+			int startTime =1000 - Main.REACH_TIME *1000;
+			beat = new beatTime[] {
+					new beatTime(startTime, "S"),
+					new beatTime(startTime+5000, "D"),
+					new beatTime(startTime+10000, "F"),
+					
+			};
+		}else if(titleName.equals("coldPlay-Viva La Vida")) {
+			int startTime =1000 - Main.REACH_TIME *1000;
+			beat = new beatTime[] {
+					new beatTime(startTime, "S"),
+					
+			};
+		}
 		int i = 0;
+		gameMusic.start();
 		while (true) {
 			if (beat[i].getTime() <= gameMusic.getTime()) {
 				Note note = new Note(beat[i].getNoteSort());

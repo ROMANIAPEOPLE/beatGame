@@ -72,7 +72,6 @@ public class BeatGame extends JFrame {
 	public static  InGameScreen game;
 	
 	ArrayList<List> List = new ArrayList<List>();
-	ArrayList<Note> NoteList = new ArrayList<Note>();
 
 	public BeatGame() {
 		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS,MP3", "BTS - 봄날" )); // num =0
@@ -365,7 +364,11 @@ public class BeatGame extends JFrame {
 
 		if (isMethodScreen) {
 			g.drawImage(inMethod, 200, 100, null);
-
+		}
+		try {
+			Thread.sleep(5);
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		paintComponents(g); // JLabel을 JFrame에 넣어줌
 		this.repaint();
@@ -428,9 +431,10 @@ public class BeatGame extends JFrame {
 		methodButton.setVisible(false);
 		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
 //		nowList(nowSelected);
-		setFocusable(true); // 11월 15일 발생한 오류 해결
+		 // 11월 15일 발생한 오류 해결
 		game = new InGameScreen(List.get(nowSelected).gettitleName(), List.get(nowSelected).getStartMusic());
 		game.start(); //Game 클래스의 스레드를 실행 
+		setFocusable(true);
 	}
 
 	public void mainBack() {

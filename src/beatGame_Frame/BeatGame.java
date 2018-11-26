@@ -74,8 +74,8 @@ public class BeatGame extends JFrame {
 	ArrayList<List> List = new ArrayList<List>();
 
 	public BeatGame() {
-		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS,MP3", "BTS - 봄날" )); // num =0
-		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "VIVA,MP3" , "coldPlay-Viva La Vida")); // num=1
+		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS.MP3", "BTS - 봄날" )); // num =0
+		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "VIVA.MP3" , "coldPlay-Viva La Vida")); // num=1
 		setUndecorated(true);
 		setTitle("BeatGame");
 		setSize(Main.SCREEN_WIDTH, Main.SCRREN_HEIGHT);
@@ -430,8 +430,6 @@ public class BeatGame extends JFrame {
 				.getImage();
 		methodButton.setVisible(false);
 		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
-//		nowList(nowSelected);
-		 // 11월 15일 발생한 오류 해결
 		game = new InGameScreen(List.get(nowSelected).gettitleName(), List.get(nowSelected).getStartMusic());
 		game.start(); //Game 클래스의 스레드를 실행 
 		setFocusable(true);

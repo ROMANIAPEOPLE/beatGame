@@ -43,11 +43,12 @@ public class Note extends Thread {
 	}
 
 	public void flow() {
-		y +=3;
+		y +=6; //속도 3
 	}
 
 	@Override
 	public void run() {
+		
 		try {
 			while (true) {
 				flow();

@@ -20,14 +20,14 @@ public class InGameScreen extends Thread { // 키보드 이벤트 리스너가 정상 작동하
 	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();// 판정라인
 	private Image divisionLine = new ImageIcon(Main.class.getResource("../images/divisionLine.png")).getImage();
 	private String titleName;
-	private String musicTitle; // 실행중인 노래 제목
+	private String musicName; // 실행중인 노래 제목
 	private Music gameMusic;
 	ArrayList<Note> List2 = new ArrayList<Note>();
 
 	public InGameScreen(String titleName, String musicTitle) { // 현재 실행중인 게임에 대한 정보를 담는 생성자
 		this.titleName = titleName;
-		this.musicTitle = musicTitle;
-		gameMusic = new Music(this.musicTitle, false); // isLoop(반복)을 false값으로 지정.
+		this.musicName = musicTitle;
+		gameMusic = new Music(this.musicName, false); // isLoop(반복)을 false값으로 지정.
 
 	}
 
@@ -116,7 +116,7 @@ public class InGameScreen extends Thread { // 키보드 이벤트 리스너가 정상 작동하
 	}
 
 	public void close() {
-		gameMusic.close();
+		gameMusic.close(); //이전으로 돌아갔을 때 음악을 멈추게 하기 위한 메소드
 	}
 
 	@Override
@@ -127,7 +127,7 @@ public class InGameScreen extends Thread { // 키보드 이벤트 리스너가 정상 작동하
 	public void flowNote() {
 		System.out.println("flow실행");
 		beatTime[] beat = null;
-		if (musicTitle.equals("BTS.MP3")) {
+		if (musicName.equals("BTS.MP3")) {
 			beat = new beatTime[] { new beatTime(800, "S"), new beatTime(4500, "D"), new beatTime(9000, "F"),
 					new beatTime(13000, "J"), new beatTime(15000, "K"), new beatTime(15000, "L"),
 					new beatTime(15300, "K"), new beatTime(15300, "L"), new beatTime(15600, "K"),
@@ -179,9 +179,11 @@ public class InGameScreen extends Thread { // 키보드 이벤트 리스너가 정상 작동하
 //					new beatTime(28400, "L"),
 //					new beatTime(28400, "L"),
 			};
-		} else if (titleName.equals("coldPlay-Viva La Vida")) {
+		} else if (musicName.equals("coldPlay-Viva La Vida")) {
 			beat = new beatTime[] { new beatTime(1000, "S"), };
 		}
+		
+		
 		gameMusic.start();
 		System.out.println("gameMusic 시작");
 

@@ -8,32 +8,32 @@ import javax.swing.ImageIcon;
 public class Note extends Thread {
 
 	private Image noteImage = new ImageIcon(Main.class.getResource("../images/noteImage.png")).getImage();// ³ëÆ®
-	int x, y= 10;
+	int x, y;
 	String noteType;
 
 	public Note(String noteType) {
-		if(noteType.equals("S")) {
-			x=295;
-		}
-		else if(noteType.equals("D")) {
-			x=396;
-		}
-		else if(noteType.equals("F")) {
-			x=498;
-		}
-		else if(noteType.equals("J")) {
-			x=599;
-		}
-		else if(noteType.equals("K")) {
-			x=700;
-		}
-		else if(noteType.equals("L")) {
-			x=802;
+		if (noteType.equals("S")) {
+			x = 295;
+			y = 10;
+		} else if (noteType.equals("D")) {
+			x = 396;
+			y = 10;
+		} else if (noteType.equals("F")) {
+			x = 498;
+			y = 10;
+		} else if (noteType.equals("J")) {
+			x = 599;
+			y = 10;
+		} else if (noteType.equals("K")) {
+			x = 700;
+			y = 10;
+		} else if (noteType.equals("L")) {
+			x = 802;
+			y = 10;
 		}
 		this.noteType = noteType;
 
 //	
-	
 
 	}
 
@@ -42,21 +42,21 @@ public class Note extends Thread {
 		g.drawImage(noteImage, x, y, null);
 	}
 
-	public void flow() {
-		y +=6; //속도 3
+	public void speedControl() { // 속도조절
+		y += 6; // 속도 1~10 조절
 	}
 
 	@Override
 	public void run() {
-		
-		try {
-			while (true) {
-				flow();
+		while (true) {
+			speedControl();
+			try {
 				Thread.sleep(10);
-
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
+
 		}
 	}
 }

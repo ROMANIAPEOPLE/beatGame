@@ -23,7 +23,6 @@ public class InGameScreen extends Thread { // 키보드 이벤트 리스너가 정상 작동하
 	private String musicName; // 실행중인 노래 제목
 	private Music gameMusic;
 	ArrayList<Note> List2 = new ArrayList<Note>();
-
 	public InGameScreen(String titleName, String musicTitle) { // 현재 실행중인 게임에 대한 정보를 담는 생성자
 		this.titleName = titleName;
 		this.musicName = musicTitle;
@@ -175,9 +174,57 @@ public class InGameScreen extends Thread { // 키보드 이벤트 리스너가 정상 작동하
 					new beatTime(41100, "L"), new beatTime(41300, "D"), new beatTime(41500, "S"),
 					new beatTime(41700, "D"), new beatTime(41900, "F"), new beatTime(42100, "K"),
 					new beatTime(42300, "S"), new beatTime(42300, "K"),// 설국열차
-//					new beatTime(28400, "L"),
-//					new beatTime(28400, "L"),
-//					new beatTime(28400, "L"),
+					new beatTime(42500, "L"),
+					new beatTime(42700, "L"),
+					new beatTime(42900, "L"),
+					new beatTime(43300, "L"),
+					new beatTime(43500, "L"),
+					new beatTime(43700, "L"),
+					new beatTime(43900, "L"),
+					new beatTime(44100, "L"),
+					new beatTime(44300, "L"),
+					new beatTime(44500, "L"),
+					new beatTime(44700, "L"),
+					new beatTime(44900, "L"),
+					new beatTime(45100, "L"),
+					new beatTime(45300, "L"),
+					new beatTime(45500, "L"),
+					new beatTime(45700, "L"),
+					new beatTime(45900, "L"),
+					new beatTime(46100, "L"),
+					new beatTime(46300, "L"),
+					new beatTime(46500, "L"),
+					new beatTime(46700, "L"),
+					new beatTime(46900, "L"),
+					new beatTime(47100, "L"),
+					new beatTime(47300, "L"),
+					new beatTime(47500, "L"),
+					new beatTime(47700, "L"),
+					new beatTime(47900, "L"),
+					new beatTime(48100, "L"),
+					new beatTime(48300, "L"),
+					new beatTime(48500, "L"),
+					new beatTime(48700, "L"),
+					new beatTime(48900, "L"),
+					new beatTime(49100, "L"),
+					new beatTime(49300, "L"),
+					new beatTime(49500, "L"),
+					new beatTime(49700, "L"),
+					new beatTime(49900, "L"),
+					new beatTime(50100, "L"),
+					new beatTime(50300, "L"),
+					new beatTime(50500, "L"),
+					new beatTime(50700, "L"),
+					new beatTime(50900, "L"),
+					new beatTime(51100, "L"),
+					new beatTime(51300, "L"),
+					new beatTime(51500, "L"),
+					new beatTime(51600, "S"),//
+					new beatTime(51700, "D"),
+					new beatTime(51800, "F"),
+					new beatTime(51900, "J"),
+					new beatTime(52000, "K"),
+					new beatTime(52100, "L"),//프렌
 			};
 		} else if (musicName.equals("coldPlay-Viva La Vida")) {
 			beat = new beatTime[] { new beatTime(1000, "S"), };

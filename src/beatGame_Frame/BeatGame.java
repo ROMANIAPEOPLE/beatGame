@@ -365,11 +365,7 @@ public class BeatGame extends JFrame {
 		if (isMethodScreen) {
 			g.drawImage(inMethod, 200, 100, null);
 		}
-		try {
-			Thread.sleep(5);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 		paintComponents(g); // JLabel을 JFrame에 넣어줌
 		this.repaint();
 	}

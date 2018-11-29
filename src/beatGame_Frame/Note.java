@@ -52,8 +52,7 @@ public class Note extends Thread {
 			speedControl();
 			try {
 				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 

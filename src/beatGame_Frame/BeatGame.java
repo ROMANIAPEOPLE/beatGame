@@ -53,6 +53,7 @@ public class BeatGame extends JFrame {
 
 	private Music selectedMusic; // 현재 음악(메인창)
 	private Image nowImage; // 현재 선택된 음악의 이미지(메인창)
+	private Image nowImageInGame;// 게임진행창에 들어갈 이미지
 	public int nowSelected = 0; // 현재 선택된 음악의 번호(0번부터 시작)
 
 	private int mouseX, mouseY;
@@ -74,8 +75,8 @@ public class BeatGame extends JFrame {
 	ArrayList<List> List = new ArrayList<List>();
 
 	public BeatGame() {
-		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS.MP3", "BTS - 봄날" )); // num =0
-		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "VIVA.MP3" , "coldPlay-Viva La Vida")); // num=1
+		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS.MP3", "BTS - 봄날" , "spring01.png")); // num =0
+		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "VIVA.MP3" , "coldPlay-Viva La Vida", "viva1.jpg")); // num=1
 		setUndecorated(true);
 		setTitle("BeatGame");
 		setSize(Main.SCREEN_WIDTH, Main.SCRREN_HEIGHT);
@@ -360,6 +361,7 @@ public class BeatGame extends JFrame {
 		}
 		if (isGameScreen == true) {
 			game.screenDraw(g);
+			g.drawImage(nowImageInGame, 800, 200, null);
 		}
 
 		if (isMethodScreen) {
@@ -377,6 +379,8 @@ public class BeatGame extends JFrame {
 		if (selectedMusic != null) // 음악이 실행중이라면
 			selectedMusic.close(); // 음악을 멈춤
 		nowImage = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getStartImage()))
+				.getImage();
+		nowImageInGame =new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getInGameImage()))
 				.getImage();
 		selectedMusic = new Music(List.get(nowSelected).getStartMusic(), true);
 		selectedMusic.start();
@@ -409,7 +413,6 @@ public class BeatGame extends JFrame {
 		mainStart.setVisible(true);
 		methodButton.setVisible(true);
 		firstBackButton.setVisible(true);
-
 		nowList(0);
 	}
 

@@ -2,15 +2,23 @@ package beatGame_Frame;
 
 public class beatTime {
 
-	private int time;
+	private int timeReader;
 	private String noteSort; //
 
-	public int getTime() {
-		return time;
+	public beatTime(int timeReader, String noteSort) {
+		super();
+		this.timeReader = timeReader;
+		this.noteSort = noteSort;
+
+	}
+	
+	
+	public int getTimeReader() {
+		return timeReader;
 	}
 
-	public void setTime(int time) {
-		this.time = time;
+	public void seTtimeReader(int timeReader) {
+		this.timeReader = timeReader;
 	}
 
 	public String getNoteSort() {
@@ -21,11 +29,6 @@ public class beatTime {
 		this.noteSort = noteSort;
 	}
 
-	public beatTime(int time, String noteSort) {
-		super();
-		this.time = time;
-		this.noteSort = noteSort;
-
-	}
+	
 
 }

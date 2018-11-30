@@ -20,13 +20,13 @@ public class BeatGame extends JFrame {
 	private Graphics screenGraphic;
 
 	private Image background = new ImageIcon(Main.class.getResource("../images/Main(Title).jpg")).getImage();
-	private Image methodBackGround = new ImageIcon(Main.class.getResource("../images/methodBackGround.jpg")).getImage();
-	private Image viva01 = new ImageIcon(Main.class.getResource("../images/viva01.png")).getImage();
+//	private Image methodBackGround = new ImageIcon(Main.class.getResource("../images/methodBackGround.jpg")).getImage();
+//	private Image viva01 = new ImageIcon(Main.class.getResource("../images/viva01.png")).getImage();
 //	private Image note = new ImageIcon(Main.class.getResource("../images/Note.png")).getImage();// 노트
-	private Image noteLine = new ImageIcon(Main.class.getResource("../images/NoteLine.png")).getImage();// 구분선
-	private Image gameTitle = new ImageIcon(Main.class.getResource("../images/gameTitle.png")).getImage();
-	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();// 판정라인
-	private Image divisionLine = new ImageIcon(Main.class.getResource("../images/divisionLine.png")).getImage();
+//	private Image noteLine = new ImageIcon(Main.class.getResource("../images/NoteLine.png")).getImage();// 구분선
+//	private Image gameTitle = new ImageIcon(Main.class.getResource("../images/gameTitle.png")).getImage();
+//	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();// 판정라인
+//	private Image divisionLine = new ImageIcon(Main.class.getResource("../images/divisionLine.png")).getImage();
 	private Image inMethod = new ImageIcon(Main.class.getResource("../images/inMethodButton.png")).getImage();
 	private ImageIcon extiButton02 = new ImageIcon(Main.class.getResource("../images/extiButton02.jpg"));
 	// 마우스가 닿을의 이미지
@@ -48,9 +48,6 @@ public class BeatGame extends JFrame {
 	private ImageIcon mainStart02 = new ImageIcon(Main.class.getResource("../images/mainStart02.jpg"));//
 	private ImageIcon mainBack = new ImageIcon(Main.class.getResource("../images/mainBackButton01.png"));//
 	private ImageIcon mainBackEnter = new ImageIcon(Main.class.getResource("../images/mainBackButton02.png"));//
-
-	
-
 	private Music selectedMusic; // 현재 음악(메인창)
 	private Image nowImage; // 현재 선택된 음악의 이미지(메인창)
 	private Image nowImageInGame;// 게임진행창에 들어갈 이미지
@@ -70,13 +67,14 @@ public class BeatGame extends JFrame {
 	private boolean isGameScreen = false; // 게임화면
 	private boolean isMainScreen = false; // 메인화면
 	private boolean isMethodScreen = false; // 게임방법 화면
-	public static  InGameScreen game;
-	
+	public static InGameScreen game;
+
 	ArrayList<List> List = new ArrayList<List>();
 
 	public BeatGame() {
-		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "BTS.MP3", "BTS - 봄날" , "spring01.png")); // num =0
-		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "VIVA.MP3" , "coldPlay-Viva La Vida", "viva1.jpg")); // num=1
+		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "spring01.png")); // num
+																													// =0
+		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "viva1.jpg")); // num=1
 		setUndecorated(true);
 		setTitle("BeatGame");
 		setSize(Main.SCREEN_WIDTH, Main.SCRREN_HEIGHT);
@@ -90,8 +88,6 @@ public class BeatGame extends JFrame {
 
 		ImageIcon img = new ImageIcon(("viva02.png"));
 		img = new ImageIcon(img.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH));
-
-	
 
 		exitButton.setBounds(1250, 0, 30, 30);
 		exitButton.setBorderPainted(false);
@@ -362,27 +358,32 @@ public class BeatGame extends JFrame {
 		if (isGameScreen == true) {
 			game.screenDraw(g);
 			g.drawImage(nowImageInGame, 800, 200, null);
+			g.setFont(new Font("볼드", Font.BOLD, 30));
+			g.setColor(Color.BLACK);
+			if (nowSelected == 0) {
+				g.drawString("난이도 ★★★☆☆", 20, 700);
+			}
+			else {
+				g.drawString("난이도 ★★★★★", 20, 700);
+			}
 		}
 
 		if (isMethodScreen) {
 			g.drawImage(inMethod, 200, 100, null);
 		}
-		
+
 		paintComponents(g); // JLabel을 JFrame에 넣어줌
 		this.repaint();
 	}
-	
-	
-	
 
 	public void nowList(int nowSelected) { // 현재 메인화면에서 실행중인 곡의 정보
 		if (selectedMusic != null) // 음악이 실행중이라면
 			selectedMusic.close(); // 음악을 멈춤
 		nowImage = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getStartImage()))
-				.getImage();
-		nowImageInGame =new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getInGameImage()))
-				.getImage();
-		selectedMusic = new Music(List.get(nowSelected).getStartMusic(), true);
+				.getImage(); //셀렉창 게임 정보 이미지
+		nowImageInGame = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getInGameImage()))
+				.getImage(); // 게임 안에 노래 타이틀을 표시하는 이미지
+		selectedMusic = new Music(List.get(nowSelected).getStartMusic(), true); //셀렉창 노래
 		selectedMusic.start();
 	}
 
@@ -426,11 +427,12 @@ public class BeatGame extends JFrame {
 		rightButton.setVisible(false);
 		mainStart.setVisible(false);
 		background = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getGameImage()))
-				.getImage();
+				.getImage(); //게임창 배경
 		methodButton.setVisible(false);
 		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
-		game = new InGameScreen(List.get(nowSelected).gettitleName(), List.get(nowSelected).getStartMusic());
-		game.start(); //Game 클래스의 스레드를 실행 
+
+		game = new InGameScreen(List.get(nowSelected).getStartMusic());
+		game.start(); // Game 클래스의 스레드를 실행
 		setFocusable(true);
 	}
 
@@ -485,8 +487,5 @@ public class BeatGame extends JFrame {
 			nowList(nowSelected);
 		}
 	}
-	
-	
-	
 
 }

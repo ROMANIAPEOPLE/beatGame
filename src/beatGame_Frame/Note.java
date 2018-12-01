@@ -9,29 +9,29 @@ public class Note extends Thread {
 
 	private Image noteImage = new ImageIcon(Main.class.getResource("../images/noteImage.png")).getImage();// ³ëÆ®
 	int x, y;
-	String noteType;
+	String noteSort;
 
-	public Note(String noteType) {
-		if (noteType.equals("S")) {
+	public Note(String noteSort) {
+		if (noteSort.equals("S")) {
 			x = 295;
 			y = 10;
-		} else if (noteType.equals("D")) {
+		} else if (noteSort.equals("D")) {
 			x = 396;
 			y = 10;
-		} else if (noteType.equals("F")) {
+		} else if (noteSort.equals("F")) {
 			x = 498;
 			y = 10;
-		} else if (noteType.equals("J")) {
+		} else if (noteSort.equals("J")) {
 			x = 599;
 			y = 10;
-		} else if (noteType.equals("K")) {
+		} else if (noteSort.equals("K")) {
 			x = 700;
 			y = 10;
-		} else if (noteType.equals("L")) {
+		} else if (noteSort.equals("L")) {
 			x = 802;
 			y = 10;
 		}
-		this.noteType = noteType;
+		this.noteSort = noteSort;
 
 //	
 
@@ -43,7 +43,7 @@ public class Note extends Thread {
 	}
 
 	public void speedControl() { // 속도조절
-		y += 6; // 속도 1~10 조절
+		y += 10; // 속도 1~10 조절
 	}
 
 	@Override

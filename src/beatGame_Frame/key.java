@@ -17,7 +17,7 @@ public class key extends KeyAdapter {
 		} else if (e.getKeyCode() == KeyEvent.VK_F) {
 			BeatGame.game.EnterdF();
 		} else if (e.getKeyCode() == KeyEvent.VK_J) {
-			BeatGame.game.EnterdJ();
+			BeatGame.game.EnterdJ(); 
 		} else if (e.getKeyCode() == KeyEvent.VK_K) {
 			BeatGame.game.EnterdK();
 		} else if (e.getKeyCode() == KeyEvent.VK_L) {

@@ -51,6 +51,7 @@ public class BeatGame extends JFrame {
 	private Music selectedMusic; // 현재 음악(메인창)
 	private Image nowImage; // 현재 선택된 음악의 이미지(메인창)
 	private Image nowImageInGame;// 게임진행창에 들어갈 이미지
+	private Image nowImageDeco;//악보
 	public int nowSelected = 0; // 현재 선택된 음악의 번호(0번부터 시작)
 
 	private int mouseX, mouseY;
@@ -72,9 +73,9 @@ public class BeatGame extends JFrame {
 	ArrayList<List> List = new ArrayList<List>();
 
 	public BeatGame() {
-		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "spring01.png")); // num
+		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "springO.png", "BTSP2.PNG")); // num
 																													// =0
-		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "viva1.jpg")); // num=1
+		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "viva1.jpg", "vivaP.PNG")); // num=1
 		setUndecorated(true);
 		setTitle("BeatGame");
 		setSize(Main.SCREEN_WIDTH, Main.SCRREN_HEIGHT);
@@ -357,7 +358,8 @@ public class BeatGame extends JFrame {
 		}
 		if (isGameScreen == true) {
 			game.screenDraw(g);
-			g.drawImage(nowImageInGame, 800, 200, null);
+			g.drawImage(nowImageInGame, 920, 60, null);
+//			g.drawImage(nowImageDeco, 10, 150,null);
 			g.setFont(new Font("볼드", Font.BOLD, 30));
 			g.setColor(Color.BLACK);
 			if (nowSelected == 0) {
@@ -383,6 +385,8 @@ public class BeatGame extends JFrame {
 				.getImage(); //셀렉창 게임 정보 이미지
 		nowImageInGame = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getInGameImage()))
 				.getImage(); // 게임 안에 노래 타이틀을 표시하는 이미지
+		nowImageDeco = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getDeco()))
+				.getImage();
 		selectedMusic = new Music(List.get(nowSelected).getStartMusic(), true); //셀렉창 노래
 		selectedMusic.start();
 	}

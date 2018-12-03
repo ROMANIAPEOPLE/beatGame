@@ -20,7 +20,7 @@ public class InGameScreen extends Thread { // 키보드 이벤트 리스너가 정상 작동하
 	private Image gameTitle = new ImageIcon(Main.class.getResource("../images/gameTitle.png")).getImage();
 	private Image line = new ImageIcon(Main.class.getResource("../images/Line.png")).getImage();// 판정라인
 	private Image divisionLine = new ImageIcon(Main.class.getResource("../images/divisionLine.png")).getImage();
-//	private String titleName;
+	private Image noteImage2 = new ImageIcon(Main.class.getResource("../images/noteImage.png")).getImage();//
 	private String musicName; // 실행중인 노래 제목
 	private Music gameMusic;
 	ArrayList<Note> List2 = new ArrayList<Note>();
@@ -277,12 +277,11 @@ public class InGameScreen extends Thread { // 키보드 이벤트 리스너가 정상 작동하
 					new beatTime(112400, "L"), new beatTime(112700, "S"), new beatTime(112700, "D"),
 					new beatTime(112700, "F"), new beatTime(112700, "J"), new beatTime(112700, "K"),
 					new beatTime(112700, "L"), };
-		
-		
+
 		} else if (musicName.equals("VIVA.MP3")) {
 			beat2 = new beatTime[10000];
 			int i = 0;
-			for (int t = 1000; t < 150000; t += 200) {
+			for (int t = 1000; t < 150000; t += 100) {
 				beat2[i] = new beatTime(t, keySort[random.nextInt(6)]);
 				i++;
 			}

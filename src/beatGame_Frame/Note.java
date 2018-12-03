@@ -8,8 +8,10 @@ import javax.swing.ImageIcon;
 public class Note extends Thread {
 
 	private Image noteImage = new ImageIcon(Main.class.getResource("../images/noteImage.png")).getImage();// ³ëÆ®
+	private Image noteImage2 = new ImageIcon(Main.class.getResource("../images/noteImage.png")).getImage();//
 	int x, y;
 	String noteSort;
+	boolean noteFade;
 
 	public Note(String noteSort) {
 		if (noteSort.equals("S")) {
@@ -38,12 +40,17 @@ public class Note extends Thread {
 	}
 
 	public void screenDraw(Graphics g) {
-
-		g.drawImage(noteImage, x, y, null);
+//		if (y > 660) { //임시
+//			g.drawImage(noteImage2, x, y, null); //임시
+			g.drawImage(noteImage, x, y, null);
 	}
 
 	public void speedControl() { // 속도조절
-		y += 10; // 속도 1~10 조절
+		y += 6; // 속도 1~10 조절
+
+		if (y == 660) {
+			System.out.println("Good");
+		}
 	}
 
 	@Override

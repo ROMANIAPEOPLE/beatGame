@@ -52,7 +52,7 @@ public class BeatGame extends JFrame {
 	private Image nowImage; // 현재 선택된 음악의 이미지(메인창)
 	private Image nowImageInGame;// 게임진행창에 들어갈 이미지
 	private Image nowImageDeco;//악보
-	public int nowSelected = 0; // 현재 선택된 음악의 번호(0번부터 시작)
+	public int musicNumber = 0; // 현재 선택된 음악의 번호(0번부터 시작)
 
 	private int mouseX, mouseY;
 	private JButton leftButton = new JButton(left1);
@@ -73,9 +73,7 @@ public class BeatGame extends JFrame {
 	ArrayList<List> List = new ArrayList<List>();
 
 	public BeatGame() {
-		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "springO.png", "BTSP2.PNG")); // num
-																													// =0
-		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "viva1.jpg", "vivaP.PNG")); // num=1
+		
 		setUndecorated(true);
 		setTitle("BeatGame");
 		setSize(Main.SCREEN_WIDTH, Main.SCRREN_HEIGHT);
@@ -86,7 +84,8 @@ public class BeatGame extends JFrame {
 		setBackground(new Color(0, 0, 0, 0));
 		setLayout(null);
 		addKeyListener(new key()); // 키보드 이벤트처리
-
+		List.add(new List("spring01.png", "spring02.jpg", "BTS.MP3", "springO.png", "BTSP2.PNG")); // num
+		List.add(new List("viva1.jpg", "viva02.jpg", "VIVA.MP3", "vivaP.jpg", "vivaP.jpg")); // num=1
 		ImageIcon img = new ImageIcon(("viva02.png"));
 		img = new ImageIcon(img.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH));
 
@@ -122,9 +121,7 @@ public class BeatGame extends JFrame {
 				mouseX = e.getX();
 				mouseY = e.getY();
 			}
-
 		});
-
 		menuBar.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
@@ -258,7 +255,7 @@ public class BeatGame extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				gameScreen(nowSelected);
+				gameScreen(musicNumber);
 
 			}
 		});
@@ -362,7 +359,7 @@ public class BeatGame extends JFrame {
 //			g.drawImage(nowImageDeco, 10, 150,null);
 			g.setFont(new Font("볼드", Font.BOLD, 30));
 			g.setColor(Color.BLACK);
-			if (nowSelected == 0) {
+			if (musicNumber == 0) {
 				g.drawString("난이도 ★★★☆☆", 20, 700);
 			}
 			else {
@@ -378,16 +375,16 @@ public class BeatGame extends JFrame {
 		this.repaint();
 	}
 
-	public void nowList(int nowSelected) { // 현재 메인화면에서 실행중인 곡의 정보
+	public void nowList(int musicNumber) { // 현재 메인화면에서 실행중인 곡의 정보
 		if (selectedMusic != null) // 음악이 실행중이라면
 			selectedMusic.close(); // 음악을 멈춤
-		nowImage = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getStartImage()))
+		nowImage = new ImageIcon(Main.class.getResource("../images/" + List.get(musicNumber).getStartImage()))
 				.getImage(); //셀렉창 게임 정보 이미지
-		nowImageInGame = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getInGameImage()))
+		nowImageInGame = new ImageIcon(Main.class.getResource("../images/" + List.get(musicNumber).getInGameImage()))
 				.getImage(); // 게임 안에 노래 타이틀을 표시하는 이미지
-		nowImageDeco = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getDeco()))
+		nowImageDeco = new ImageIcon(Main.class.getResource("../images/" + List.get(musicNumber).getDeco()))
 				.getImage();
-		selectedMusic = new Music(List.get(nowSelected).getStartMusic(), true); //셀렉창 노래
+		selectedMusic = new Music(List.get(musicNumber).getStartMusic(), true); //셀렉창 노래
 		selectedMusic.start();
 	}
 
@@ -421,7 +418,7 @@ public class BeatGame extends JFrame {
 		nowList(0);
 	}
 
-	public void gameScreen(int nowSelected) {
+	public void gameScreen(int musicNumber) {
 		if (selectedMusic != null) {
 			selectedMusic.close();
 		}
@@ -430,12 +427,12 @@ public class BeatGame extends JFrame {
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		mainStart.setVisible(false);
-		background = new ImageIcon(Main.class.getResource("../images/" + List.get(nowSelected).getGameImage()))
+		background = new ImageIcon(Main.class.getResource("../images/" + List.get(musicNumber).getGameImage()))
 				.getImage(); //게임창 배경
 		methodButton.setVisible(false);
 		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
 
-		game = new InGameScreen(List.get(nowSelected).getStartMusic());
+		game = new InGameScreen(List.get(musicNumber).getStartMusic());
 		game.start(); // Game 클래스의 스레드를 실행
 		setFocusable(true);
 	}
@@ -449,7 +446,7 @@ public class BeatGame extends JFrame {
 		// 배경화면 다시 바꿔주고
 		mainBackButton.setVisible(false); // 이전으로 버튼 삭제
 		methodButton.setVisible(true);
-		nowList(nowSelected);// 다시 현재 곡리스트의 번호를 재생함
+		nowList(musicNumber);// 다시 현재 곡리스트의 번호를 재생함
 		isGameScreen = false;
 		isMethodScreen = false;
 		game.close();
@@ -471,24 +468,24 @@ public class BeatGame extends JFrame {
 //	}
 
 	public void buttonRight() { // 게임메인화면 오른쪽 버튼 활성화
-		if (nowSelected == 0) {
-			nowSelected++;
-			nowList(nowSelected);
+		if (musicNumber == 0) {
+			musicNumber++;
+			nowList(musicNumber);
 		}
 
 		else {
-			nowSelected--;
-			nowList(nowSelected);
+			musicNumber--;
+			nowList(musicNumber);
 		}
 	}
 
 	public void buttonLeft() { // 게임메인화면 왼쪽 버튼 활성화
-		if (nowSelected == 1) {
-			nowSelected--;
-			nowList(nowSelected);
+		if (musicNumber == 1) {
+			musicNumber--;
+			nowList(musicNumber);
 		} else {
-			nowSelected++;
-			nowList(nowSelected);
+			musicNumber++;
+			nowList(musicNumber);
 		}
 	}
 

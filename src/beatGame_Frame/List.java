@@ -8,7 +8,6 @@ public class List {
 	private String deco;
 
 	public List(String startImage, String gameImage, String startMusic,String inGameImage,String deco) {
-		super();
 		this.startImage = startImage; //게임 표지
 		this.gameImage = gameImage; //인게임 배경
 		this.startMusic = startMusic; //음악

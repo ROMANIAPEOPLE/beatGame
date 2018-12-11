@@ -49,7 +49,7 @@ public class Note extends Thread {
 		y += 6; // 속도 1~10 조절
 
 		if (y == 660) {
-			System.out.println("Good");
+			System.out.println("ㅇ");
 		}
 	}
 

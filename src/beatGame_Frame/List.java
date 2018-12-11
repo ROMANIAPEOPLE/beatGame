@@ -5,7 +5,7 @@ public class List {
 	private String gameImage; // 게임중 이미지
 	private String startMusic; //  음악
 	private String inGameImage; // 게임 오른쪽 상단에 표시될 이미지
-	private String deco;
+	private String deco; //사용안함
 
 	public List(String startImage, String gameImage, String startMusic,String inGameImage,String deco) {
 		this.startImage = startImage; //게임 표지

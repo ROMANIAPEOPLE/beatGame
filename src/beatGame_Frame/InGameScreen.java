@@ -282,7 +282,7 @@ public class InGameScreen extends Thread { // 키보드 이벤트 리스너가 정상 작동하
 			beat2 = new beatTime[10000];
 			int i = 0;
 			for (int t = 1000; t < 150000; t += 100) {
-				beat2[i] = new beatTime(t, keySort[random.nextInt(6)]);
+				beat2[i] = new beatTime(t, keySort[random.nextInt(6)]); //랜덤으로 노트들이 떨어지도록 설정
 				i++;
 			}
 

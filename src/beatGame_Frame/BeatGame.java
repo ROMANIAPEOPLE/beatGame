@@ -48,13 +48,17 @@ public class BeatGame extends JFrame {
 	private ImageIcon mainStart02 = new ImageIcon(Main.class.getResource("../images/mainStart02.jpg"));//
 	private ImageIcon mainBack = new ImageIcon(Main.class.getResource("../images/mainBackButton01.png"));//
 	private ImageIcon mainBackEnter = new ImageIcon(Main.class.getResource("../images/mainBackButton02.png"));//
+	private ImageIcon lastExit1 = new ImageIcon(Main.class.getResource("../images/temp1.png"));//
+	private ImageIcon lastExit2 = new ImageIcon(Main.class.getResource("../images/temp2.png"));//
 	private Music selectedMusic; // 현재 음악(메인창)
 	private Image nowImage; // 현재 선택된 음악의 이미지(메인창)
 	private Image nowImageInGame;// 게임진행창에 들어갈 이미지
-	private Image nowImageDeco;//악보
 	public int musicNumber = 0; // 현재 선택된 음악의 번호(0번부터 시작)
-
+//	private Image nowImageDeco;// 사용안함(악보)
+	
+	
 	private int mouseX, mouseY;
+	private JButton lastOut = new JButton(lastExit1); //마지막 창에서 처음으로 돌아오는 버튼
 	private JButton leftButton = new JButton(left1);
 	private JButton rightButton = new JButton(right1);
 	private JButton exitButton = new JButton(extiButton01);// 닫기 버튼 추가
@@ -288,6 +292,35 @@ public class BeatGame extends JFrame {
 //
 //		add(firstBackButton);
 
+		lastOut.setVisible(false);
+		lastOut.setBounds(1000,500 , 170, 70);
+		lastOut.setBorderPainted(false);
+		lastOut.setContentAreaFilled(false);
+		lastOut.setFocusPainted(false);
+		lastOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) { // 마우스를 X버튼 위에 올렸을 때
+				lastOut.setCursor(new Cursor(Cursor.HAND_CURSOR));// 손가락모양
+				lastOut.setIcon(lastExit2); // 임의로 지정한 그림으로 변경
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) { // 마우스를 X버튼에서 올리지 않았을 때
+				lastOut.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 디폴트값
+				lastOut.setIcon(lastExit1); // 다시 임의로 지정한 그림으로 변경
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				lastOutEvent();
+			}
+		});
+
+		add(lastOut);
+		
+		
+		
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 		mainBackButton.setVisible(false);
 		mainBackButton.setBounds(20, 50, 230, 70);
 		mainBackButton.setBorderPainted(false);
@@ -382,8 +415,8 @@ public class BeatGame extends JFrame {
 				.getImage(); //셀렉창 게임 정보 이미지
 		nowImageInGame = new ImageIcon(Main.class.getResource("../images/" + List.get(musicNumber).getInGameImage()))
 				.getImage(); // 게임 안에 노래 타이틀을 표시하는 이미지
-		nowImageDeco = new ImageIcon(Main.class.getResource("../images/" + List.get(musicNumber).getDeco()))
-				.getImage();
+//		nowImageDeco = new ImageIcon(Main.class.getResource("../images/" + List.get(musicNumber).getDeco()))
+//				.getImage(); 사용X
 		selectedMusic = new Music(List.get(musicNumber).getStartMusic(), true); //셀렉창 노래
 		selectedMusic.start();
 	}
@@ -402,6 +435,7 @@ public class BeatGame extends JFrame {
 		mainStart.setVisible(false);
 		methodButton.setVisible(false);
 		mainBackButton.setVisible(true);
+		lastOut.setVisible(false);
 	}
 
 	public void mainScreen() {
@@ -431,7 +465,7 @@ public class BeatGame extends JFrame {
 				.getImage(); //게임창 배경
 		methodButton.setVisible(false);
 		mainBackButton.setVisible(true); // 게임시작화면에만 이전으로 버튼이 나타남
-
+		lastOut.setVisible(true);
 		game = new InGameScreen(List.get(musicNumber).getStartMusic());
 		game.start(); // Game 클래스의 스레드를 실행
 		setFocusable(true);
@@ -449,10 +483,24 @@ public class BeatGame extends JFrame {
 		nowList(musicNumber);// 다시 현재 곡리스트의 번호를 재생함
 		isGameScreen = false;
 		isMethodScreen = false;
+		lastOut.setVisible(false);
 		game.close();
 	}
+	
+	public void lastOutEvent() {
+		isMainScreen=false;
+		isGameScreen=false;
+		isMethodScreen=false;
+		background = new ImageIcon(Main.class.getResource("../images/Main(Title).jpg")).getImage();
+		mainBackButton.setVisible(false);
+		startButton.setVisible(true);
+		ex.setVisible(true);
+		lastOut.setVisible(false);
+		game.close();
+		
+	}
 
-//	public void firtBack() {    (게임 처음화면으로 가는 버튼은 불필요)
+//	public void firtBack() {    (게임 처음화면으로 가는 버튼 불필요)
 //		isMainScreen = false;
 //		leftButton.setVisible(false);
 //		rightButton.setVisible(false);

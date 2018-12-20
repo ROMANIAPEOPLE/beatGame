@@ -6,7 +6,6 @@ public class beatTime {
 	private String noteSort; //
 
 	public beatTime(int timeReader, String noteSort) {
-		super();
 		this.timeReader = timeReader;
 		this.noteSort = noteSort;
 

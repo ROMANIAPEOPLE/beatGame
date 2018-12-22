@@ -48,8 +48,8 @@ public class BeatGame extends JFrame {
 	private ImageIcon mainStart02 = new ImageIcon(Main.class.getResource("../images/mainStart02.jpg"));//
 	private ImageIcon mainBack = new ImageIcon(Main.class.getResource("../images/mainBackButton01.png"));//
 	private ImageIcon mainBackEnter = new ImageIcon(Main.class.getResource("../images/mainBackButton02.png"));//
-	private ImageIcon lastExit1 = new ImageIcon(Main.class.getResource("../images/temp1.png"));//
-	private ImageIcon lastExit2 = new ImageIcon(Main.class.getResource("../images/temp2.png"));//
+	private ImageIcon lastExit1 = new ImageIcon(Main.class.getResource("../images/temp11.png"));//
+	private ImageIcon lastExit2 = new ImageIcon(Main.class.getResource("../images/temp02.png"));//
 	private Music selectedMusic; // 현재 음악(메인창)
 	private Image nowImage; // 현재 선택된 음악의 이미지(메인창)
 	private Image nowImageInGame;// 게임진행창에 들어갈 이미지
@@ -293,7 +293,7 @@ public class BeatGame extends JFrame {
 //		add(firstBackButton);
 
 		lastOut.setVisible(false);
-		lastOut.setBounds(1000,500 , 170, 70);
+		lastOut.setBounds(1000,440 , 170, 70);
 		lastOut.setBorderPainted(false);
 		lastOut.setContentAreaFilled(false);
 		lastOut.setFocusPainted(false);
@@ -497,6 +497,7 @@ public class BeatGame extends JFrame {
 		ex.setVisible(true);
 		lastOut.setVisible(false);
 		game.close();
+		musicNumber=0;
 		
 	}
 
